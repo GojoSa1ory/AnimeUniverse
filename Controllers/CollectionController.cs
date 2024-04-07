@@ -63,4 +63,28 @@ public class CollectionController: ControllerBase
         
         return response;
     }
+
+    [HttpPatch("update/{collectionId}")]
+    public async Task<ActionResult<ServiceResponse<GetCollectionDto>>> UpdateCollectionInfo(SetCollectionDto collectionDto, int collectionId)
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        
+        var response = await _service.UpdateCollectionInfo(collectionDto, collectionId, int.Parse(userId));
+
+        if (!response.Success) return BadRequest(response);
+        
+        return response;
+    }
+
+    [HttpDelete("delete/{collectionId}")]
+    public async Task<ActionResult<ServiceResponse<string>>> DeleteCollection(int collectionId)
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        
+        var response = await _service.Remove(collectionId, int.Parse(userId));
+
+        if (!response.Success) return BadRequest(response);
+        
+        return response;
+    }
 }

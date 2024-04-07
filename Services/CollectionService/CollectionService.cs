@@ -125,4 +125,55 @@ public class CollectionService : ICollectionService
 
         return response;
     }
+
+    public async Task<ServiceResponse<GetCollectionDto>> UpdateCollectionInfo(SetCollectionDto collectionDto, int collectionId, int userId)
+    {
+        ServiceResponse<GetCollectionDto> response = new();
+
+        try
+        {
+            var collection = _context.Collections.FirstOrDefault(c => c.Id == collectionId && c.user.Id == userId);
+
+            if (collection is null) throw new Exception("Collection not found");
+
+            collection.CollectionImage = collectionDto.CollectionImage;
+            collection.CollectionName = collectionDto.CollectionName;
+
+            await _context.SaveChangesAsync();
+
+            response.Data = _mapper.Map<GetCollectionDto>(collection);
+        }
+        catch (Exception e)
+        {
+            response.Message = e.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
+
+    public async Task<ServiceResponse<string>> Remove(int id, int userId)
+    {
+        ServiceResponse<string> response = new();
+
+        try
+        {
+            var collection = _context.Collections.FirstOrDefault(c => c.Id == id && c.user.Id == userId);
+
+            if (collection is null) throw new Exception("Collection not found");
+
+            _context.Collections.Remove(collection);
+
+            await _context.SaveChangesAsync();
+
+            response.Data = "Delete success";
+        }
+        catch (Exception e)
+        {
+            response.Message = e.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
 }
