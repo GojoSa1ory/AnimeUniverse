@@ -1,0 +1,21 @@
+.profile-collections-layout {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+    border-radius: 10px;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.profile-collectionsPage-list {
+    display: grid;
+    padding: 20px;
+    height: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    overflow-y: auto;
+
+}

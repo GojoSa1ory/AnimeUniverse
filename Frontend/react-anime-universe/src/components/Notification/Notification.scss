@@ -1,0 +1,22 @@
+.notification {
+    position: fixed;
+    z-index: 50;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    background-color: black;
+    border-radius: 20px;
+    border-width: 2px;
+    color: white;        
+}
+
+.negative-notification {
+    @extend .notification;
+    border-color: red;
+}
+
+.positive-notification {
+    @extend .notification;
+    border-color: greenyellow;
+}

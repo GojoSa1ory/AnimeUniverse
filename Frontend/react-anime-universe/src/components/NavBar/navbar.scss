@@ -1,0 +1,52 @@
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.navbar-logo {
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    transition-duration: 500ms;
+}
+
+.navbar-logo:hover {
+    color: rgb(174, 0, 255);
+    scale: 105%;
+}
+
+.navbar-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-button h1 {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.navbar-button img {
+    height: 50px;
+}
+
+.navbar-search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 10px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+
+.navbar-auth-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

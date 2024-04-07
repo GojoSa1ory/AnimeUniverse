@@ -1,0 +1,18 @@
+// w-full h-dvh p-10 flex flex-col justify-center items-center
+
+.noitems-container {
+    width: 100%;
+    height: 100dvh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.noitems-title {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}

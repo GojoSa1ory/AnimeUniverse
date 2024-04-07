@@ -1,0 +1,50 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.form-title {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+    --tw-gradient-from: #dc2626 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(220 38 38 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #eab308 var(--tw-gradient-to-position);
+}
+
+.form-input {
+    opacity: 0.7;
+    width: 100%;
+    margin-top: 12px;    
+}
+
+.form-container p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-link {
+    --tw-text-opacity: 1;
+    color: rgb(252 165 165 / var(--tw-text-opacity));
+    font-weight: 700;
+    transition-duration: 300ms;
+}
+
+.form-link:hover {
+    opacity: 0.7;
+}
+
+.form-button {
+    padding: 0;
+    border-style: solid;
+    border-width: 2px;
+    width: 100%;
+}

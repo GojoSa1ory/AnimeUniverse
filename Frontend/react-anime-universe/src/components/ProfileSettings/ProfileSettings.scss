@@ -1,0 +1,153 @@
+.profile-settings-main-layout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 40px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+    border-radius: 10px;
+}
+
+.user-update-data {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.panel {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.update-user-info {
+    @extend .panel;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin-right: 20px;
+}
+
+.update-user-info-component {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: start;
+    align-items: start;
+}
+
+.update-user-info-input {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.user-info-input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.user-info-input[type=file]::file-selector-button:hover {
+    background-color: rgb(128, 29, 195);
+}
+
+.update-user-info-btn {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.profile-preview-layout {
+    @extend .panel;
+    flex-direction: row;
+    height: 200px;
+    width: 70%;
+}
+
+.profile-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-preview p {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.profile-preview img {
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+
+.input-file {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input-file p {
+    margin-bottom: 10px;
+}
+
+.input-file-btn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    vertical-align: middle;
+    color: rgb(255 255 255);
+    text-align: center;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    line-height: 22px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    transition: background-color 0.2s;
+}
+
+.input-file-text {
+    padding: 0 10px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.input-file input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+
+/* Hover/active */
+.input-file:hover .input-file-btn {
+    background-color: rgb(128, 25, 193);
+}

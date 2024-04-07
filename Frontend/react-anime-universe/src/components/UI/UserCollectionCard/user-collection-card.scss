@@ -1,0 +1,35 @@
+.collection-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 330px;
+    height: 330px;
+    color: gray;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: black;
+    transition-duration: 300ms;
+}
+
+.collection-card:hover {
+    scale: 95%;
+}
+
+.collection-card:focus {
+    scale: 95%;
+    outline: none;
+}
+
+.collection-card-content {
+    padding: 16px;
+    height: 112px;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.collection-card-content p {
+    overflow: hidden;
+    text-overflow: ellipsis;    
+}

@@ -1,0 +1,23 @@
+.collectionPage-layout {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+    overflow-y: hidden;
+}
+
+.collectionPage-title {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: bold;
+}
+
+.collectionPage-list {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+    overflow-y: auto;
+    height: 100%;
+}

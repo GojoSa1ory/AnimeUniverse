@@ -1,0 +1,13 @@
+.custom-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 8px;
+    transition-duration: 400ms;
+}
+
+.custom-button:hover {
+    background-color: rgb(122, 21, 203);
+    scale: 105%;
+}

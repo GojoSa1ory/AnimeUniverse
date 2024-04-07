@@ -1,0 +1,69 @@
+.home {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(28, 28, 28);
+    padding: 40px;
+}
+
+.home-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    height: 500px;
+    width: 1300px;
+    padding: 40px;
+    margin-bottom: 64px;
+    border-radius: 20px;
+}
+
+.intro-title {
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: 800;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+    --tw-gradient-from: #2563eb var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(37 99 235 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #a855f7 var(--tw-gradient-to-position);
+}
+
+.intro-subtitle {
+    @extend .intro-title;
+    font-size: 48px;
+}
+
+.anime-section {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.anime-button {
+    width: 100%;
+    border: 2px;
+    border-radius: 10px;
+    border-style: solid;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.anime-button:focus {
+    scale: 105%;
+    outline: none;
+}
+
+.bg-home {
+    position: relative;
+    background-image: url('../public/bg.jpg');
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

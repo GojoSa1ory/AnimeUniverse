@@ -1,0 +1,18 @@
+.notfound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 100%;
+    height: 100dvh;
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+
+.notfound-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+}
