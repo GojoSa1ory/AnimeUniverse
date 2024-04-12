@@ -17,6 +17,7 @@ var key = config.GetSection("AUTH:KEY").Value;
 
 //JWT AUTH
 builder.Services.AddAuthorization();
+builder.Services.AddCors();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -73,7 +74,7 @@ builder.Services.AddScoped<ICollectionService, CollectionService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
-
+app.UseCors(b => b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

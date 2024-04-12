@@ -8,7 +8,7 @@ public class UserService : IUserService
     private readonly IMapper _mapper;
     private readonly AppDbContext _context;
 
-    private List<GetUserDto> users = new List<GetUserDto> () {
+    private List<GetUserDto> users = new List<GetUserDto>() {
         new GetUserDto {Id = 1, Name = "Alex", Email = "adsasd", ProfileImage = "sdfsd"}
     };
 
@@ -18,6 +18,28 @@ public class UserService : IUserService
         _context = context;
     }
 
+    public async Task<ServiceResponse<GetUserDto>> Profile(int id)
+    {
+        ServiceResponse<GetUserDto> response = new();
+
+        try
+        {
+
+            UserModel user = _context.Users.FirstOrDefault(u => u.Id == id);
+
+            if (user is null) throw new Exception("User not found");
+
+            response.Data = _mapper.Map<GetUserDto>(user);
+
+        }
+        catch (Exception e)
+        {
+            response.Message = e.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
 
     public async Task<ServiceResponse<List<GetUserDto>>> GetAl()
     {
@@ -38,12 +60,12 @@ public class UserService : IUserService
 
             Console.WriteLine(CheckUser(user));
             if (CheckUser(user)) throw new Exception("This user already exist");
-            
+
             user.Password = BCrypt.Net.BCrypt.HashPassword(newUser.Password);
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            
+
             response.Data = _mapper.Map<GetUserDto>(user);
         }
         catch (Exception e)
@@ -74,7 +96,7 @@ public class UserService : IUserService
             response.Message = e.Message;
             response.Success = false;
         }
-        
+
         return response;
     }
 
@@ -98,7 +120,7 @@ public class UserService : IUserService
             response.Message = e.Message;
             response.Success = false;
         }
-        
+
         return response;
     }
 

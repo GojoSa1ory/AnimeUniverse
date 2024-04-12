@@ -18,23 +18,23 @@ public class AuthService : IAuthService
         _context = context;
         _configuration = configuration;
     }
-    
+
     public async Task<ServiceResponse<AuthDto>> Register(SetUserDto user)
     {
         ServiceResponse<AuthDto> response = new();
-        
+
         try
         {
             if (IsUserExist(user.Name)) throw new Exception("User with this name is already exist");
 
             var newUser = _mapper.Map<UserModel>(user);
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            
+
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
-            
+
             string token = CreateToken(newUser);
-            
+
             AuthDto authDto = new AuthDto
             {
                 token = token,
@@ -60,9 +60,9 @@ public class AuthService : IAuthService
         try
         {
             if (!IsUserExist(user.Name)) throw new Exception("User not found");
-            
+
             UserModel dBUser = _context.Users.FirstOrDefault(u => u.Name == user.Name);
-            
+
             if (!BCrypt.Net.BCrypt.Verify(user.Password, dBUser.Password))
                 throw new Exception("Password is invalid");
 
@@ -90,10 +90,10 @@ public class AuthService : IAuthService
         var user = _context.Users.FirstOrDefault(u => u.Name == name);
 
         if (user is not null) return true;
-        
+
         return false;
     }
-    
+
     private string CreateToken(UserModel user)
     {
         List<Claim> claims = new List<Claim>

@@ -1,20 +1,11 @@
-import { IAnime } from "./anime.models"
-
 export type IUser = {
-    id: number
-    username: string
-    email: string
-    image: string
-    collection: UserCollection[]
-    createdAt: Date
-    updatedAt: Date
-}
+    id: number;
+    name: string;
+    email: string;
+    profileImage: string;
+};
 
-type UserCollection = {
-    id: number
-    title: string
-    user: IUser
-    anime: IAnime[];
-    createdAt: Date
-    updatedAt: Date
-}
+export type ILoginUser = {
+    name: string;
+    password: string;
+};
