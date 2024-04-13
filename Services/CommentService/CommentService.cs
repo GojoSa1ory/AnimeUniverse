@@ -48,7 +48,7 @@ public class CommentService : ICommnetService
         return response;
     }
 
-    public async Task<ServiceResponse<List<GetCommentDto>>> GetCommentsByAnime(int userId, string animeId)
+    public async Task<ServiceResponse<List<GetCommentDto>>> GetCommentsByAnime(string animeId)
     {
         var response = new ServiceResponse<List<GetCommentDto>>();
 
@@ -56,7 +56,7 @@ public class CommentService : ICommnetService
         {
             var comments = context.Comments
             .Include(c => c.User)
-            .Where(c => c.User.Id == userId && c.Anime.Any(a => a.Id == animeId));
+            .Where(c => c.Anime.Any(a => a.Id == animeId));
 
             if (comments.IsNullOrEmpty()) throw new Exception("Comments not found");
 

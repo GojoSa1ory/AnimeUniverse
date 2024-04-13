@@ -1,0 +1,11 @@
+.comments-container {
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 20px;
+}

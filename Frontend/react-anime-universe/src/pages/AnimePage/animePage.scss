@@ -1,7 +1,6 @@
 .animePageLayout {
     width: 100%;
     padding: 0;
-    margin: 0;
 }
 
 // flex 
@@ -19,7 +18,6 @@
     align-items: start;
     width: 100%;
     height: 100%;
-    padding: 64px;
 }
 
 .animePage-anime-intro {
@@ -210,4 +208,8 @@
     align-items: start;
     padding: 16px;
     border-radius: 16px;
+}
+
+.animePage-comments-container {
+    margin: 64px;
 }

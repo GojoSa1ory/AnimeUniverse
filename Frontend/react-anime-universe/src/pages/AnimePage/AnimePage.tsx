@@ -9,14 +9,20 @@ import { Helmet } from "react-helmet-async";
 import CollectionsService from "../../service/collections.service";
 import { IUserCollection } from "../../models/collections.model";
 import CreateCollectionModal from "../../components/UI/CreateCollectionModal/CreateCollectionModal";
+import { CommentModel, SetCommentModel } from "../../models/comment.model";
+import { CommentView } from "../../components/UI/Comments/CommentView";
+import Input from "../../components/UI/Input/Input";
+import Button from "../../components/UI/Button/Button";
 
 function AnimePage() {
     const { id } = useParams();
 
     const [isHovered, setIsHovered] = useState(false);
     const [anime, setAnime] = useState<AnimeDto | null>(null);
+    const [comments, setComments] = useState<CommentModel[] | []>([])
     const [collections, setCollections] = useState<IUserCollection[] | []>([]);
     const [open, setOpen] = useState<boolean>(false);
+    const [commentText, setCommentText] = useState<string | null>("");
 
     useEffect(() => {
         AnimeService.getAnimeById(id)
@@ -25,10 +31,13 @@ function AnimePage() {
         CollectionsService.getAllCollections()
             .then((res) => setCollections(res.data))
             .catch((err) => console.log(err));
-
+        AnimeService.getComments(id)
+            .then((data) => { setComments(data.data.data); console.log(data.data.data[0].user.profileImage) })
+            .catch((err) => console.log(err))
         return () => {
             setAnime(null);
             setCollections([]);
+            setComments([])
         };
     }, []);
 
@@ -59,6 +68,15 @@ function AnimePage() {
 
     if (!anime) {
         return <Loading />;
+    }
+
+    const handleSendComment = () => {
+        const comment: SetCommentModel = {
+            text: commentText!,
+            name: "string"
+        }
+
+        AnimeService.sendComment(id, comment).catch(err => console.log(err))
     }
 
     return (
@@ -225,6 +243,24 @@ function AnimePage() {
                     <div className="animePage-episodes bg-main-bg">
                         {anime.attributes.showType}
                     </div>
+                </div>
+
+                <div className="m-14 flex flex-col justify-center items-end h-[200px]">
+                    <textarea
+                        placeholder="Ur text"
+                        value={commentText!}
+                        onChange={(e) => setCommentText(e.target.value)}
+                        className="w-full h-48 mb-5 p-2 resize-none border rounded border-none outline-none bg-zinc-900"
+                    />
+                    <Button title="Send" className="w-1/5" onClick={(e) => handleSendComment()}/>
+                </div>
+
+                <div className="animePage-comments-container">
+                    <ul>
+                        {comments.map(c => (
+                            <CommentView key={c.id} comments={c} />
+                        ))}
+                    </ul>
                 </div>
             </section>
         </>

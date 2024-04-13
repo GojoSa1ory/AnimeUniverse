@@ -1,84 +1,94 @@
-export type AnimeResponse = {
-    data: AnimeDto[];
-    success: boolean;
-    message: string;
-};
+export class AnimeDto {
+    public id: string;
+    public type: string;
+    public links: LinksDto;
+    public attributes: AttributesDto;
 
-export type OneAnimeResponse = {
-    data: AnimeDto;
-    success: boolean;
-    message: string;
-};
+    constructor(
+        id: string,
+        type: string,
+        links: LinksDto,
+        attributes: AttributesDto,
+    ) {
+        this.id = id;
+        this.type = type;
+        this.links = links;
+        this.attributes = attributes;
+    }
+}
 
-export type AnimeDto = {
-    id: string;
-    type: string;
-    links: LinksDto;
-    attributes: AttributesDto;
-};
+export class AttributesDto {
+    constructor(
+        public id: number,
+        public createdAt: string,
+        public updatedAt: string,
+        public slug: string,
+        public synopsis: string,
+        public description: string,
+        public coverImageTopOffset: number,
+        public titles: TitlesDto,
+        public canonicalTitle: string,
+        public averageRating: string,
+        public userCount: number,
+        public favoritesCount: number,
+        public startDate: string,
+        public endDate: string,
+        public nextRelease: string,
+        public popularityRank: string,
+        public ratingRank: number,
+        public ageRating: string,
+        public ageRatingGuide: string,
+        public subtype: string,
+        public status: string,
+        public tba: string,
+        public posterImage: PosterImageDto,
+        public coverImage: CoverImageDto,
+        public episodeCount: number,
+        public episodeLength: string,
+        public totalLength: string | number,
+        public youtubeVideoId: string,
+        public showType: string,
+        public nsfw: boolean,
+    ) {}
+}
 
-export type AttributesDto = {
-    id: number;
-    createdAt: string;
-    updatedAt: string;
-    slug: string;
-    synopsis: string;
-    description: string;
-    coverImageTopOffset: number;
-    titles: TitlesDto;
-    canonicalTitle: string;
-    averageRating: string;
-    userCount: number;
-    favoritesCount: number;
-    startDate: string;
-    endDate: string;
-    nextRelease: string;
-    popularityRank: string;
-    ratingRank: number;
-    ageRating: string;
-    ageRatingGuide: string;
-    subtype: string;
-    status: string;
-    tba: string;
-    posterImage: PosterImageDto;
-    coverImage: CoverImageDto;
-    episodeCount: number;
-    episodeLength: string;
-    totalLength: string | number;
-    youtubeVideoId: string;
-    showType: string;
-    nsfw: boolean;
-};
+export class LinksDto {
+    constructor(
+        public id: number,
+        public self: string,
+        public related: string,
+        public first: string,
+        public next: string,
+        public last: string,
+    ) {}
+}
 
-export type LinksDto = {
-    id: number;
-    self: string;
-    related: string;
-    first: string;
-    next: string;
-    last: string;
-};
+export class TitlesDto {
+    constructor(
+        public id: number,
+        public en: string,
+        public en_jp: string,
+        public ja_jp: string,
+    ) {}
+}
 
-export type TitlesDto = {
-    id: number;
-    en: string;
-    en_jp: string;
-    ja_jp: string;
-};
+export class PosterImageDto {
+    constructor(
+        public id: number,
+        public tiny: string,
+        public large: string,
+        public small: string,
+        public medium: string,
+        public original: string,
+    ) {}
+}
 
-export type PosterImageDto = {
-    id: number;
-    tiny: string;
-    large: string;
-    small: string;
-    medium: string;
-    original: string;
-};
-
-export type CoverImageDto = {
-    id: number;
-    tiny: string;
-    large: string;
-    small: string;
-    original: string;
-};
+export class CoverImageDto {
+    constructor(
+        public id: number,
+        public tiny: string,
+        public large: string,
+        public small: string,
+        public original: string,
+    ) {}
+}

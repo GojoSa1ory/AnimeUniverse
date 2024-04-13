@@ -10,25 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b490adc-a8c6-4817-a484-0c9fe3267469" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RSPOCourseWork/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RSPOCourseWork/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/AnimeCard/AnimeCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/AnimeCard/AnimeCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CommentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileSettings/ProfileSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileSettings/ProfileSettings.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/anime.models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/anime.models.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/auth.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/auth.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/user.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/AnimePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/AnimePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/HomePage/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/LoginPage/LoginPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/anime.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/anime.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/collections.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/collections.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/AuthService/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AuthService/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/AuthService/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AuthService/IAuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/UserService/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/UserService/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/UserService/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/UserService/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CommentService/CommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CommentService/CommentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CommentService/ICommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CommentService/ICommentService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +24,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -61,6 +51,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/artem/RiderProjects/RSPOCourseWork/Frontend/react-anime-universe/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -130,6 +121,7 @@
       <workItem from="1712382692058" duration="19086000" />
       <workItem from="1712480458711" duration="2347000" />
       <workItem from="1712682241475" duration="1852000" />
+      <workItem from="1713013559030" duration="10717000" />
     </task>
     <servers />
   </component>

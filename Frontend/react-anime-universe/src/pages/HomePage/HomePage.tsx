@@ -12,7 +12,6 @@ function HomePage() {
     useEffect(() => {
         AnimeService.getFixedAnime()
             .then((item) => {
-                console.log(item.data.data);
                 setAnime(item.data.data);
             })
             .catch(() => new Error("Failed to get data"));

@@ -30,8 +30,7 @@ public class CommentController : ControllerBase
     [HttpGet("get/animeId")]
     public async Task<ActionResult<ServiceResponse<List<GetCommentDto>>>> GetComments(string animeId)
     {
-        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-        var response = await service.GetCommentsByAnime(userId, animeId);
+        var response = await service.GetCommentsByAnime(animeId);
 
         if (!response.Success) return BadRequest(response);
 
