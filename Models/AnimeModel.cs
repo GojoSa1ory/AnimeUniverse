@@ -7,6 +7,7 @@ public class AnimeModel
     public LinksModel links { get; set; }
     public AttributesModel attributes { get; set; }
     public List<CollectionModel>? collections { get; set; }
+    public List<CommentModel>? comments { get; set; }
 }
 
 public class AttributesModel
@@ -14,8 +15,6 @@ public class AttributesModel
     public int Id { get; set; }
     public DateTime createdAt { get; set; }
     public DateTime updatedAt { get; set; }
-    public string slug { get; set; }
-    public string synopsis { get; set; }
     public string description { get; set; }
     public int coverImageTopOffset { get; set; }
     public TitlesModel titles { get; set; }
@@ -23,17 +22,13 @@ public class AttributesModel
     public List<string> abbreviatedTitles { get; set; }
     public string averageRating { get; set; }
     public int userCount { get; set; }
-    public int favoritesCount { get; set; }
     public string startDate { get; set; }
     public string endDate { get; set; }
-    public string? nextRelease { get; set; }
     public int popularityRank { get; set; }
     public int ratingRank { get; set; }
     public string? ageRating { get; set; }
-    public string? ageRatingGuide { get; set; }
     public string subtype { get; set; }
     public string status { get; set; }
-    public string? tba { get; set; }
     public PosterImageModel posterImage { get; set; }
     public CoverImageModel coverImage { get; set; }
     public int? episodeCount { get; set; }

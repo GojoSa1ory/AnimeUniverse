@@ -1,6 +1,5 @@
 namespace RSPOCourseWork.Dtos;
 
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 public class AnimeCharacters
 {
     public Links links { get; set; }
@@ -80,7 +79,6 @@ public class Datum
     public string type { get; set; }
     public Links links { get; set; }
     public Attributes attributes { get; set; }
-    // public Relationships relationships { get; set; }
 }
 
 public class Dimensions

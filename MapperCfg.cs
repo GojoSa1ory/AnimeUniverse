@@ -8,12 +8,12 @@ public class MapperCfg : Profile
         //User models/dtos configuration
         CreateMap<GetUserDto, SetUserDto>();
         CreateMap<SetUserDto, GetUserDto>();
-        
+
         CreateMap<GetUserDto, UserModel>();
         CreateMap<SetUserDto, UserModel>();
         CreateMap<UserModel, GetUserDto>();
         CreateMap<UserModel, SetUserDto>();
-        
+
         //Anime configuration
         CreateMap<AnimeModel, Datum>();
         CreateMap<AttributesModel, Attributes>();
@@ -21,21 +21,21 @@ public class MapperCfg : Profile
         CreateMap<TitlesModel, Titles>();
         CreateMap<PosterImageModel, PosterImage>();
         CreateMap<CoverImageModel, CoverImage>();
-        
+
         CreateMap<Datum, AnimeModel>();
         CreateMap<Attributes, AttributesModel>();
         CreateMap<Links, LinksModel>();
         CreateMap<Titles, TitlesModel>();
         CreateMap<PosterImage, PosterImageModel>();
         CreateMap<CoverImage, CoverImageModel>();
-        
+
         CreateMap<AnimeModel, AnimeDto>();
         CreateMap<AttributesModel, AttributesDto>();
         CreateMap<LinksModel, LinksDto>();
         CreateMap<TitlesModel, TitlesDto>();
         CreateMap<PosterImageModel, PosterImageDto>();
         CreateMap<CoverImageModel, CoverImageDto>();
-        
+
         //Collection configuration
         CreateMap<GetCollectionDto, SetCollectionDto>();
         CreateMap<SetCollectionDto, GetCollectionDto>();
@@ -43,6 +43,13 @@ public class MapperCfg : Profile
         CreateMap<SetCollectionDto, CollectionModel>();
         CreateMap<CollectionModel, SetCollectionDto>();
         CreateMap<CollectionModel, GetCollectionDto>();
+
+        //Comment configuration
+        CreateMap<CommentModel, SetCommentDto>();
+        CreateMap<CommentModel, GetCommentDto>();
+        CreateMap<SetCommentDto, CommentModel>();
+        CreateMap<GetCommentDto, CommentModel>();
+        CreateMap<GetCommentDto, SetCommentDto>();
+        CreateMap<SetCommentDto, GetCommentDto>();
     }
 }
-

@@ -7,4 +7,5 @@ public class AppDbContext : DbContext
     public DbSet<UserModel> Users { get; set; }
     public DbSet<AnimeModel> Anime { get; set; }
     public DbSet<CollectionModel> Collections { get; set; }
+    public DbSet<CommentModel> Comments { get; set; }
 }
