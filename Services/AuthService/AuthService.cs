@@ -109,7 +109,7 @@ public class AuthService : IAuthService
             issuer: _configuration.GetSection("Auth:ISSUER").Value,
             audience: _configuration.GetSection("Auth:AUDIENCE").Value,
             claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+            expires: DateTime.UtcNow.Add(TimeSpan.FromDays(1)),
             signingCredentials: cred
         );
 

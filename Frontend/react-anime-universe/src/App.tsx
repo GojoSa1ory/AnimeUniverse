@@ -14,6 +14,7 @@ import AuthGuard from "./guards/AuthGuard";
 import CollectionPage from "./pages/CollectionPage/CollectionPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import MainLayout from "./components/Layouts/MainLayout";
+import { UserService } from "./service/user.service";
 
 function App() {
     const setUser = useUser((state) => state.setUser);
@@ -26,8 +27,8 @@ function App() {
 
                 AuthService.checkAuth()
                     .then((res) => {
-                        AuthService.getUser(res.data.data.id)
-                            .then((user) => setUser(user.data))
+                        UserService.getUser(res.data.data.id)
+                            .then((res) => setUser(res.data.data))
                             .catch((err) => console.log(err));
                     })
                     .catch((error) => {

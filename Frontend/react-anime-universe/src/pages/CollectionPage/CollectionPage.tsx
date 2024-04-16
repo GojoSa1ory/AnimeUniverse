@@ -34,7 +34,7 @@ function CollectionPage() {
             <section className='collectionPage-layout'>
                 <h1 className="collectionPage-title">{col?.title}</h1>
 
-                {anime.length === 0 ? <NoItems title={col?.title} /> :
+                {anime.length === 0 ? <NoItems title={`Your ${col?.title} is empty`} /> :
 
                     <div className="collectionPage-list">
                         {/* TODO: Create a useful anime list component */}

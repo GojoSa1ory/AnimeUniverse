@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../../components/UI/Button/Button";
 import "./home.scss";
 import { AnimeDto } from "../../models/anime.models";
+import Loading from "../../components/Loading/Loading.tsx";
 
 function HomePage() {
     const [anime, setAnime] = useState<AnimeDto[] | []>([]);
@@ -16,7 +17,7 @@ function HomePage() {
             })
             .catch(() => new Error("Failed to get data"));
 
-        return () => setAnime([]);
+        // return () => setAnime([]);
     }, []);
 
     return (
@@ -29,15 +30,20 @@ function HomePage() {
                     </h2>
                 </div>
 
-                <section className="anime-section">
-                    {anime.map((el) => (
-                        <AnimeCard anime={el} key={el.id} />
-                    ))}
+                {anime
+                    ?
+                    <section className="anime-section">
+                        {anime.map((el) => (
+                            <AnimeCard anime={el} key={el.id}/>
+                        ))}
 
-                    <Link to={"/anime"}>
-                        <Button className="anime-button">Watch all</Button>
-                    </Link>
-                </section>
+                        <Link to={"/anime"}>
+                            <Button className="anime-button">Watch all</Button>
+                        </Link>
+                    </section>
+                    :
+                    <Loading/>
+                }
             </main>
         </>
     );

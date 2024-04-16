@@ -8,10 +8,6 @@ public class UserService : IUserService
     private readonly IMapper _mapper;
     private readonly AppDbContext _context;
 
-    private List<GetUserDto> users = new List<GetUserDto>() {
-        new GetUserDto {Id = 1, Name = "Alex", Email = "adsasd", ProfileImage = "sdfsd"}
-    };
-
     public UserService(IMapper mapper, AppDbContext context)
     {
         _mapper = mapper;
@@ -44,8 +40,6 @@ public class UserService : IUserService
     public async Task<ServiceResponse<List<GetUserDto>>> GetAl()
     {
         ServiceResponse<List<GetUserDto>> response = new();
-
-        response.Data = users;
 
         return response;
     }
@@ -118,6 +112,37 @@ public class UserService : IUserService
         catch (Exception e)
         {
             response.Message = e.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
+
+    public async Task<ServiceResponse<GetUserDto>> UpdateUser(UpdateUserDto newUser, int id)
+    {
+        var response = new ServiceResponse<GetUserDto>();
+
+        try
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+
+            if (user is null) throw new Exception("User not found");
+
+            user.Name = newUser?.Name is not null ? newUser.Name : user.Name; ;
+            user.Email = newUser?.Email is not null ? newUser.Email : user.Email;
+
+            if (newUser?.Password is not null)
+                if (!BCrypt.Net.BCrypt.Verify(newUser?.Password, user.Password))
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(newUser?.Password);
+
+            await _context.SaveChangesAsync();
+
+            response.Data = _mapper.Map<GetUserDto>(user);
+
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
             response.Success = false;
         }
 

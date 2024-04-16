@@ -11,15 +11,17 @@ import { IUserCollection } from "../../models/collections.model";
 import CreateCollectionModal from "../../components/UI/CreateCollectionModal/CreateCollectionModal";
 import { CommentModel, SetCommentModel } from "../../models/comment.model";
 import { CommentView } from "../../components/UI/Comments/CommentView";
-import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
+import {ServerResponse} from "../../models/serverResponse.models.ts";
+import NoItems from "../../components/NoItems/NoItems.tsx";
+import {CommentService} from "../../service/comment.service.ts";
 
 function AnimePage() {
     const { id } = useParams();
 
     const [isHovered, setIsHovered] = useState(false);
     const [anime, setAnime] = useState<AnimeDto | null>(null);
-    const [comments, setComments] = useState<CommentModel[] | []>([])
+    const [comments, setComments] = useState<ServerResponse<CommentModel[]> | undefined>()
     const [collections, setCollections] = useState<IUserCollection[] | []>([]);
     const [open, setOpen] = useState<boolean>(false);
     const [commentText, setCommentText] = useState<string | null>("");
@@ -28,16 +30,18 @@ function AnimePage() {
         AnimeService.getAnimeById(id)
             .then((item) => setAnime(item.data.data))
             .catch((err) => console.error(err));
+        
         CollectionsService.getAllCollections()
             .then((res) => setCollections(res.data))
             .catch((err) => console.log(err));
-        AnimeService.getComments(id)
-            .then((data) => { setComments(data.data.data); console.log(data.data.data[0].user.profileImage) })
-            .catch((err) => console.log(err))
+        
+        CommentService.getComments(id)
+            .then((data) => { setComments(data.data); console.log(data.data) })
+            .catch((err: ServerResponse<CommentModel[]>) => setComments(err))
+        
         return () => {
             setAnime(null);
             setCollections([]);
-            setComments([])
         };
     }, []);
 
@@ -76,7 +80,17 @@ function AnimePage() {
             name: "string"
         }
 
-        AnimeService.sendComment(id, comment).catch(err => console.log(err))
+        CommentService.sendComment(id, comment)
+            .then(data => {
+                console.log(data.data.data)
+                setComments(prevComments => ({
+                    ...prevComments,
+                    data: prevComments?.data ? [...prevComments.data, data.data.data] : [data.data.data],
+                    success: true,
+                    message: prevComments?.message || '',
+                }))
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -256,11 +270,23 @@ function AnimePage() {
                 </div>
 
                 <div className="animePage-comments-container">
-                    <ul>
-                        {comments.map(c => (
-                            <CommentView key={c.id} comments={c} />
-                        ))}
-                    </ul>
+                    
+                    {comments?.message &&
+                        <NoItems title={"No comments"}/>
+                    }
+                    
+                    {comments?.success === true && !comments.data &&
+                        <Loading/>
+                    }
+                    
+                    {comments?.data &&
+                        <ul>
+                            {comments?.data.map((c: CommentModel) => (
+                                <CommentView key={c.id} comments={c}/>
+                            ))}
+                        </ul>
+                    }
+                    
                 </div>
             </section>
         </>

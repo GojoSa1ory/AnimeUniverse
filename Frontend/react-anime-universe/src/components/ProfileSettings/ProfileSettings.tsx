@@ -3,8 +3,8 @@ import Button from "../UI/Button/Button";
 import Input from "../UI/Input/Input";
 import "./ProfileSettings.scss";
 import { useUser } from "../../stores/user.store";
-import AuthService from "../../service/auth.service";
-import { $api } from "../../api";
+import { UserService } from "../../service/user.service";
+import { ISetUser } from "../../models/user.model";
 
 function ProfileSettings() {
     const currentUser = useUser((state) => state.user);
@@ -12,46 +12,47 @@ function ProfileSettings() {
     const [file, setFile] = useState<File | null>(null);
 
     const [updateForm, setUpdateForm] = useState({
-        username: currentUser?.username,
+        name: currentUser?.name,
         password: "",
         email: currentUser?.email,
-        image: currentUser?.image,
-        setUsername: (name: string) => {
-            setUpdateForm((prev) => ({
-                ...prev,
-                username: name,
-            }));
-        },
-        setEmail: (email: string) => {
-            setUpdateForm((prev) => ({
-                ...prev,
-                email: email,
-            }));
-        },
-        setNewPassword: (password: string) => {
-            setUpdateForm((prev) => ({
-                ...prev,
-                password: password,
-            }));
-        },
+        image: currentUser?.profileImage,
     });
+
+    const setPassword = (pass: string) => {
+        setUpdateForm((prev) => ({
+            ...prev,
+            password: pass,
+        }));
+    };
+
+    const setName = (name: string) => {
+        setUpdateForm((prev) => ({
+            ...prev,
+            name: name,
+        }));
+    };
+
+    const setEmail = (email: string) => {
+        setUpdateForm((prev) => ({
+            ...prev,
+            email: email,
+        }));
+    };
 
     const updateUser = async (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined,
     ) => {
         e?.preventDefault();
 
-        const user = {
-            username: updateForm.username,
+        const user: ISetUser = {
+            name: updateForm.name,
             email: updateForm.email,
         };
 
-        AuthService.updateUserInfo(currentUser?.username, user)
-            .then((data) => {
-                localStorage.removeItem("token");
-                localStorage.setItem("token", data.data.token);
-                setUser(data.data);
-                // window.location.reload()
+        UserService.updateUserInfo(user)
+            .then((res) => {
+                setUser(res.data.data);
+                window.location.reload();
             })
             .catch(() => console.log("Failed update user"));
     };
@@ -61,15 +62,13 @@ function ProfileSettings() {
     ) => {
         e?.preventDefault();
 
-        const user = {
+        const user: ISetUser = {
             password: updateForm.password,
         };
 
-        AuthService.updatePassword(currentUser?.name, user).then((data) => {
-            localStorage.removeItem("token");
-            localStorage.setItem("token", data.data.token);
-            setUser(data.data);
-            // window.location.reload()
+        UserService.updateUserInfo(user).then((data) => {
+            setUser(data.data.data);
+            window.location.reload();
         });
     };
 
@@ -86,8 +85,16 @@ function ProfileSettings() {
             }
 
             const formData = new FormData();
-            formData.append("image", file);
-            await $api.put(`/user/${currentUser?.name}/image`, formData);
+            formData.append("ProfileImage", file);
+
+            const user: ISetUser = {
+                profileImage: formData.get("ProfileImage"),
+            };
+
+            UserService.updateImage(user).then((response) =>
+                console.log(response.data),
+            );
+
             window.location.reload();
         } catch (error) {
             console.log("Failed update image");
@@ -95,7 +102,7 @@ function ProfileSettings() {
     };
 
     const deleteUser = async () => {
-        AuthService.deleteUser(currentUser?.name)
+        UserService.deleteUser(currentUser?.name)
             .then(() => {
                 localStorage.removeItem("token");
                 window.location.reload();
@@ -132,7 +139,7 @@ function ProfileSettings() {
                                 className="update-user-info-input"
                                 type="password"
                                 value={updateForm.password}
-                                setValue={updateForm.setNewPassword}
+                                setValue={setPassword}
                                 placeholder="******"
                             />
                         </div>
@@ -152,8 +159,8 @@ function ProfileSettings() {
                             <Input
                                 className="update-user-info-input"
                                 type="text"
-                                value={updateForm.username}
-                                setValue={updateForm.setUsername}
+                                value={updateForm.name}
+                                setValue={setName}
                                 placeholder="Alex"
                             />
                         </div>
@@ -164,7 +171,7 @@ function ProfileSettings() {
                                 className="update-user-info-input"
                                 type="text"
                                 value={updateForm.email}
-                                setValue={updateForm.setEmail}
+                                setValue={setEmail}
                                 placeholder="example@gmail.com"
                             />
                         </div>

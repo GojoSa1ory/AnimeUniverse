@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import CollectionsService from '../../service/collections.service'
 import { IUserCollection } from '../../models/collections.model'
 import { UserCollectionCard } from '../../components/UI/UserCollectionCard/UserCollectionCard'
+import NoItems from "../../components/NoItems/NoItems.tsx";
 
 function CollectionsPage() {
 
@@ -25,8 +26,10 @@ function CollectionsPage() {
 
         <h1>Your collections</h1>
 
-        <section className='collectionsPage-list'>
+        {!collections && <NoItems title={"U don't have any collections"}/>}
 
+        <section className='collectionsPage-list flex'>
+            
             {collections?.map(el => (
                 <UserCollectionCard collection={el} key={el.id}/>
             ))}

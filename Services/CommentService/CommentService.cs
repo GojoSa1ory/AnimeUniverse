@@ -34,10 +34,14 @@ public class CommentService : ICommnetService
             CommentModel comment = mapper.Map<CommentModel>(newComment);
             user.comments = new List<CommentModel>() { comment };
             anime.comments = new List<CommentModel>() { comment };
-
+            
             await context.SaveChangesAsync();
-
-            response.Data = mapper.Map<GetCommentDto>(newComment);
+            
+            var responseComment = mapper.Map<GetCommentDto>(newComment);
+            responseComment.User = mapper.Map<GetUserDto>(user);
+            
+            
+            response.Data = mapper.Map<GetCommentDto>(responseComment);
         }
         catch (Exception ex)
         {
@@ -84,8 +88,7 @@ public class CommentService : ICommnetService
                 .FirstOrDefault(c => c.Id == commentId && c.User.Id == userId && c.Anime.Any(a => a.Id == animeId));
 
             if (comment is null) throw new Exception("Comment not found");
-
-            comment.Name = newComment.Name;
+            
             comment.Text = newComment.Text;
             comment.UpdatedAt = newComment.CreatedAt;
 

@@ -33,6 +33,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+
 //DB Setup
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetSection("AppSettings:DefaultConnection").Value));
@@ -73,6 +74,7 @@ builder.Services.AddScoped<IAnimeService, AnimeService>();
 builder.Services.AddScoped<ICollectionService, CollectionService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICommnetService, CommentService>();
+builder.Services.AddScoped<IUploadService, UploadFileService>();
 
 var app = builder.Build();
 app.UseCors(b => b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
