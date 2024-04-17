@@ -9,13 +9,35 @@ public class AnimeService : IAnimeService
     private readonly IMapper _mapper;
     private readonly AppDbContext _context;
     private readonly HttpClient _client = new();
-    
-    public AnimeService (IMapper _mapper, AppDbContext context)
+
+    public AnimeService(IMapper _mapper, AppDbContext context)
     {
         this._mapper = _mapper;
         _context = context;
     }
-    
+
+    public async Task<ServiceResponse<List<AnimeDto>>> Search(string request)
+    {
+
+        ServiceResponse<List<AnimeDto>> response = new();
+
+        try
+        {
+
+            var animeList = _context.Anime.Where(a => a.attributes.canonicalTitle.Contains(request) || a.attributes.titles.en.Contains(request) || a.attributes.titles.en_jp.Contains(request) || a.attributes.titles.ja_jp.Contains(request));
+
+            response.Data = animeList.Select(a => _mapper.Map<AnimeDto>(a)).ToList();
+
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
+
     public async Task<ServiceResponse<List<AnimeModel>>> ParseShit()
     {
         ServiceResponse<List<AnimeModel>> response = new();
@@ -49,7 +71,7 @@ public class AnimeService : IAnimeService
 
     public async Task<ServiceResponse<List<AnimeModel>>> GetAll()
     {
-        ServiceResponse <List<AnimeModel>> response = new();
+        ServiceResponse<List<AnimeModel>> response = new();
 
         try
         {
@@ -62,7 +84,7 @@ public class AnimeService : IAnimeService
                 .ToListAsync();
 
             if (data is null) throw new Exception("Anime is empty");
-            
+
             response.Data = data;
         }
         catch (Exception e)
@@ -97,7 +119,7 @@ public class AnimeService : IAnimeService
             response.Message = e.Message;
             response.Success = false;
         }
-        
+
         return response;
     }
 }

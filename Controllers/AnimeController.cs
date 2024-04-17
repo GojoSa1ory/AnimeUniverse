@@ -9,9 +9,19 @@ public class AnimeController : ControllerBase
 {
     private readonly IAnimeService _service;
 
-    public AnimeController (IAnimeService service)
+    public AnimeController(IAnimeService service)
     {
         _service = service;
+    }
+
+    [HttpGet("search/{request}")]
+    public async Task<ActionResult<ServiceResponse<List<AnimeDto>>>> Search(string request)
+    {
+        var result = await _service.Search(request);
+
+        if (!result.Success) return BadRequest(result);
+
+        return Ok(result);
     }
 
     [HttpGet("parse")]
@@ -40,7 +50,7 @@ public class AnimeController : ControllerBase
         var response = await _service.GetById(id);
 
         if (!response.Success) return NotFound(response);
-        
+
         return response;
     }
 }
