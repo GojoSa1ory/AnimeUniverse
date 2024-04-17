@@ -11,4 +11,5 @@ public class UserModel
     public string Password { get; set; }
     public List<CollectionModel>? collections { get; set; }
     public List<CommentModel>? comments { get; set; }
+    public RoleModel Role { get; set; }
 }
