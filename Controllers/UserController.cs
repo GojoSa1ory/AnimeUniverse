@@ -17,9 +17,12 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("all")]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<ServiceResponse<List<GetUserDto>>>> GetUsers()
     {
         var response = await this.service.GetAl();
+
+        if (!response.Success) return BadRequest(response);
 
         return Ok(response);
     }

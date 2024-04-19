@@ -8,10 +8,12 @@ namespace RSPOCourseWork.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _service;
-    
-    public AuthController (IAuthService service)
+    private readonly AppDbContext _context;
+
+    public AuthController(IAuthService service, AppDbContext context)
     {
         _service = service;
+        _context = context;
     }
 
     [HttpPost("register")]
@@ -20,17 +22,17 @@ public class AuthController : ControllerBase
         var response = await _service.Register(user);
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
     }
-    
+
     [HttpPost("login")]
     public async Task<ActionResult<ServiceResponse<AuthDto>>> Login(SetAuthUser user)
     {
         var response = await _service.Login(user);
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
     }
 }

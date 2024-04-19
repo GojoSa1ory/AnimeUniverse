@@ -2,7 +2,7 @@ namespace RSPOCourseWork.Models;
 
 public class RoleModel
 {
-    public string Admin { get; } = "admin";
-    public string DefaultUser { get; } = "defaultUser";
-    public UserModel user { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public UserModel? User { get; set; }
 }

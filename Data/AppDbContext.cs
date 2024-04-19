@@ -8,4 +8,5 @@ public class AppDbContext : DbContext
     public DbSet<AnimeModel> Anime { get; set; }
     public DbSet<CollectionModel> Collections { get; set; }
     public DbSet<CommentModel> Comments { get; set; }
+    public DbSet<RoleModel> Roles { get; set; }
 }

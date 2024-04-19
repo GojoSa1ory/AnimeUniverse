@@ -6,5 +6,5 @@ public class CollectionModel
     public string CollectionName { get; set; }
     public string CollectionImage { get; set; }
     public List<AnimeModel>? anime { get; set; }
-    public UserModel? user { get; set; }
+    public UserModel user { get; set; }
 }

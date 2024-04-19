@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RSPOCourseWork.Data;
@@ -12,9 +13,11 @@ using RSPOCourseWork.Data;
 namespace RSPOCourseWork.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240419071844_Roles")]
+    partial class Roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,7 +197,7 @@ namespace RSPOCourseWork.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("userId")
+                    b.Property<int?>("userId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -330,7 +333,11 @@ namespace RSPOCourseWork.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Admin")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DefaultUser")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -476,9 +483,7 @@ namespace RSPOCourseWork.Migrations
                 {
                     b.HasOne("RSPOCourseWork.Models.UserModel", "user")
                         .WithMany("collections")
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("userId");
 
                     b.Navigation("user");
                 });

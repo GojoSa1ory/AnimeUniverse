@@ -41,6 +41,21 @@ public class UserService : IUserService
     {
         ServiceResponse<List<GetUserDto>> response = new();
 
+        try
+        {
+            var users = _context.Users;
+
+            if (users is null) throw new Exception("No users");
+
+            response.Data = users.Select(u => _mapper.Map<GetUserDto>(u)).ToList();
+
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
+            response.Success = false;
+        }
+
         return response;
     }
 
