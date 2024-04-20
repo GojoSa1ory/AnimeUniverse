@@ -39,7 +39,6 @@ function AnimePage() {
 
         CommentService.getComments(id)
             .then((data) => {
-                console.log(comments);
                 setComments(data.data.data);
             })
             .catch((err) => console.log(err.message));
@@ -47,6 +46,7 @@ function AnimePage() {
         return () => {
             setAnime(null);
             setCollections([]);
+            setComments([]);
         };
     }, []);
 
@@ -87,15 +87,6 @@ function AnimePage() {
 
         CommentService.sendComment(id, comment)
             .then((data) => {
-                console.log(data.data.data);
-                // setComments((prevComments) => ({
-                //     ...prevComments,
-                //     data: prevComments?.data
-                //         ? [...prevComments.data, data.data.data]
-                //         : [data.data.data],
-                //     success: true,
-                //     message: prevComments?.message || "",
-                // }));
                 setComments([...comments, data.data.data]);
             })
             .catch((err) => console.log(err));

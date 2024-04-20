@@ -24,7 +24,11 @@ public class AnimeService : IAnimeService
         try
         {
 
-            var animeList = _context.Anime.Where(a => a.attributes.canonicalTitle.Contains(request) || a.attributes.titles.en.Contains(request) || a.attributes.titles.en_jp.Contains(request) || a.attributes.titles.ja_jp.Contains(request));
+            var animeList = _context.Anime
+            .Include(a => a.attributes)
+            .Include(a => a.attributes.posterImage)
+            .Include(a => a.attributes.titles)
+            .Where(a => a.attributes.canonicalTitle.Contains(request) || a.attributes.titles.en.Contains(request) || a.attributes.titles.en_jp.Contains(request) || a.attributes.titles.ja_jp.Contains(request));
 
             response.Data = animeList.Select(a => _mapper.Map<AnimeDto>(a)).ToList();
 
