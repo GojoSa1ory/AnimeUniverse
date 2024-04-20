@@ -25,8 +25,8 @@ export class CommentService {
         commentId: string | number | undefined,
         animeId: string | undefined,
         comment: SetCommentModel,
-    ): Promise<AxiosResponse<ServerResponse<CommentModel>>> {
-        return $api.patch<ServerResponse<CommentModel>>(
+    ): Promise<AxiosResponse<ServerResponse<CommentModel[]>>> {
+        return $api.patch<ServerResponse<CommentModel[]>>(
             `${this.base_url}/Comment/update/animeId/commentId?animeId=${animeId}&commentId=${commentId}`,
             comment,
         );

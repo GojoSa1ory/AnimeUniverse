@@ -184,7 +184,11 @@ function ProfileSettings() {
                     </form>
 
                     <div className="update-user-info">
-                        <img src="/images/loaders/fr.gif" width={250} />
+                        <img
+                            src="/images/loaders/fr.gif"
+                            className="rounded-xl mb-3"
+                            width={250}
+                        />
                         <Button
                             onClick={deleteUser}
                             title="Delete account"

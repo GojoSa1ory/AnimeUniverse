@@ -7,5 +7,5 @@ public class GetCommentDto
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public GetUserDto User { get; set; }
-    public List<AnimeDto> Anime { get; set; }
+    public AnimeDto Anime { get; set; }
 }

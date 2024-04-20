@@ -61,7 +61,7 @@ public class CommentService : ICommnetService
             var comments = context.Comments
             .Include(c => c.User)
             .Include(c => c.Anime)
-            .Where(c => c.Anime.Any(a => a.Id == animeId));
+            .Where(c => c.Anime.Id == animeId);
 
             if (comments.IsNullOrEmpty()) throw new Exception("Comments not found");
 
@@ -77,16 +77,16 @@ public class CommentService : ICommnetService
         return response;
     }
 
-    public async Task<ServiceResponse<GetCommentDto>> UpdateComment(SetCommentDto newComment, int userId, string animeId, int commentId)
+    public async Task<ServiceResponse<List<GetCommentDto>>> UpdateComment(SetCommentDto newComment, int userId, string animeId, int commentId)
     {
 
-        ServiceResponse<GetCommentDto> response = new();
+        ServiceResponse<List<GetCommentDto>> response = new();
 
         try
         {
             var comment = context.Comments
                 .Include(c => c.User)
-                .FirstOrDefault(c => c.Id == commentId && c.User.Id == userId && c.Anime.Any(a => a.Id == animeId));
+                .FirstOrDefault(c => c.Id == commentId && c.User.Id == userId && c.Anime.Id == animeId);
 
             if (comment is null) throw new Exception("Comment not found");
 
@@ -95,7 +95,12 @@ public class CommentService : ICommnetService
 
             await context.SaveChangesAsync();
 
-            response.Data = mapper.Map<GetCommentDto>(comment);
+            var comments = this.context.Comments
+            .Include(c => c.User)
+            .Include(c => c.Anime)
+            .Where(c => c.Anime.Id == animeId);
+
+            response.Data = comments.Select(c => this.mapper.Map<GetCommentDto>(c)).ToList();
 
         }
         catch (Exception ex)

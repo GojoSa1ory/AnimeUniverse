@@ -7,5 +7,5 @@ public class CommentModel
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public UserModel User { get; set; }
-    public List<AnimeModel> Anime { get; set; }
+    public AnimeModel? Anime { get; set; }
 }

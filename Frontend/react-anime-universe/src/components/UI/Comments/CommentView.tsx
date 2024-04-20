@@ -57,19 +57,12 @@ export const CommentView = ({ comment }: { comment: CommentModel }) => {
             text: text,
         };
 
-        CommentService.updateComment(
-            comment?.id,
-            comment?.anime[0].id,
-            newComment,
-        )
-            .then(() =>
-                CommentService.getComments(comment.anime[0].id)
-                    .then((res) => setComments(res.data.data))
-                    .catch((err) => console.log(err)),
-            )
+        CommentService.updateComment(comment?.id, comment?.anime.id, newComment)
+            .then((response) => {
+                setComments(response.data.data);
+            })
             .catch((err) => {
                 console.error(err);
-                // setComment(null);
             })
             .finally(() => setIsEdidet(false));
     }
@@ -78,7 +71,6 @@ export const CommentView = ({ comment }: { comment: CommentModel }) => {
         CommentService.deleteComment(comment?.id)
             .then((response) => {
                 console.log(response);
-                // setComment(null);
             })
             .catch((err) => console.error(err));
     }
