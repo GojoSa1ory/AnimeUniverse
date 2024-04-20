@@ -34,13 +34,13 @@ public class CommentService : ICommnetService
             CommentModel comment = mapper.Map<CommentModel>(newComment);
             user.comments = new List<CommentModel>() { comment };
             anime.comments = new List<CommentModel>() { comment };
-            
+
             await context.SaveChangesAsync();
-            
+
             var responseComment = mapper.Map<GetCommentDto>(newComment);
             responseComment.User = mapper.Map<GetUserDto>(user);
-            
-            
+
+
             response.Data = mapper.Map<GetCommentDto>(responseComment);
         }
         catch (Exception ex)
@@ -60,6 +60,7 @@ public class CommentService : ICommnetService
         {
             var comments = context.Comments
             .Include(c => c.User)
+            .Include(c => c.Anime)
             .Where(c => c.Anime.Any(a => a.Id == animeId));
 
             if (comments.IsNullOrEmpty()) throw new Exception("Comments not found");
@@ -88,7 +89,7 @@ public class CommentService : ICommnetService
                 .FirstOrDefault(c => c.Id == commentId && c.User.Id == userId && c.Anime.Any(a => a.Id == animeId));
 
             if (comment is null) throw new Exception("Comment not found");
-            
+
             comment.Text = newComment.Text;
             comment.UpdatedAt = newComment.CreatedAt;
 
@@ -96,6 +97,32 @@ public class CommentService : ICommnetService
 
             response.Data = mapper.Map<GetCommentDto>(comment);
 
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
+
+    public async Task<ServiceResponse<string>> DeleteComment(int userId, int commentId)
+    {
+        ServiceResponse<string> response = new();
+
+        try
+        {
+
+            var comment = this.context.Comments.FirstOrDefault(c => c.Id == commentId && c.User.Id == userId);
+
+            if (comment is null) throw new Exception("Comment not found");
+
+            this.context.Remove(comment);
+
+            await this.context.SaveChangesAsync();
+
+            response.Data = "success";
         }
         catch (Exception ex)
         {

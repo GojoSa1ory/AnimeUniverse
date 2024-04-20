@@ -1,18 +1,20 @@
+import { AnimeDto } from "./anime.models";
 import { IUser } from "./user.model";
 
 export class CommentModel {
-    constructor (
+    constructor(
         public id: number,
         public name: string,
         public text: string,
         public createdAt: string,
         public updatedAt: string,
-        public user: IUser
+        public user: IUser,
+        public anime: AnimeDto,
     ) {}
 }
 
 export class SetCommentModel {
-    constructor (
+    constructor(
         public name: string,
         public text: string,
         public createdAt?: string,

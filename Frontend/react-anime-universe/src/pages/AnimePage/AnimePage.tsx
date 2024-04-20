@@ -2,43 +2,48 @@ import "./animePage.scss";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import CollectionsService from "../../service/collections.service";
 import { AnimeDto } from "../../models/anime.models";
 import AnimeService from "../../service/anime.service";
 import Loading from "../../components/Loading/Loading";
 import { Helmet } from "react-helmet-async";
-import CollectionsService from "../../service/collections.service";
-import { IUserCollection } from "../../models/collections.model";
+import { CollectionDto } from "../../models/collections.model";
 import CreateCollectionModal from "../../components/UI/CreateCollectionModal/CreateCollectionModal";
 import { CommentModel, SetCommentModel } from "../../models/comment.model";
 import { CommentView } from "../../components/UI/Comments/CommentView";
 import Button from "../../components/UI/Button/Button";
-import {ServerResponse} from "../../models/serverResponse.models.ts";
 import NoItems from "../../components/NoItems/NoItems.tsx";
-import {CommentService} from "../../service/comment.service.ts";
+import { CommentService } from "../../service/comment.service.ts";
+import { useComment } from "../../stores/comment.store.ts";
 
 function AnimePage() {
     const { id } = useParams();
 
     const [isHovered, setIsHovered] = useState(false);
     const [anime, setAnime] = useState<AnimeDto | null>(null);
-    const [comments, setComments] = useState<ServerResponse<CommentModel[]> | undefined>()
-    const [collections, setCollections] = useState<IUserCollection[] | []>([]);
+    const [collections, setCollections] = useState<CollectionDto[] | []>([]);
     const [open, setOpen] = useState<boolean>(false);
     const [commentText, setCommentText] = useState<string | null>("");
+
+    const comments = useComment((state) => state.comments);
+    const setComments = useComment((state) => state.setComments);
 
     useEffect(() => {
         AnimeService.getAnimeById(id)
             .then((item) => setAnime(item.data.data))
             .catch((err) => console.error(err));
-        
+
         CollectionsService.getAllCollections()
-            .then((res) => setCollections(res.data))
-            .catch((err) => console.log(err));
-        
+            .then((res) => setCollections(res.data.data))
+            .catch((err) => console.log(err.message));
+
         CommentService.getComments(id)
-            .then((data) => { setComments(data.data); console.log(data.data) })
-            .catch((err: ServerResponse<CommentModel[]>) => setComments(err))
-        
+            .then((data) => {
+                console.log(comments);
+                setComments(data.data.data);
+            })
+            .catch((err) => console.log(err.message));
+
         return () => {
             setAnime(null);
             setCollections([]);
@@ -53,9 +58,9 @@ function AnimePage() {
         setIsHovered(false);
     };
 
-    const handleSelectChange = (
+    const handleSelectChange: (
         event: React.ChangeEvent<HTMLSelectElement>,
-    ) => {
+    ) => void = (event: React.ChangeEvent<HTMLSelectElement>): void => {
         if (event.target.value === "Create collection") {
             setOpen(true);
         } else {
@@ -66,7 +71,7 @@ function AnimePage() {
         }
     };
 
-    const closeModal = () => {
+    const closeModal: () => void = (): void => {
         setOpen(false);
     };
 
@@ -74,28 +79,31 @@ function AnimePage() {
         return <Loading />;
     }
 
-    const handleSendComment = () => {
+    const handleSendComment: () => void = (): void => {
         const comment: SetCommentModel = {
             text: commentText!,
-            name: "string"
-        }
+            name: "string",
+        };
 
         CommentService.sendComment(id, comment)
-            .then(data => {
-                console.log(data.data.data)
-                setComments(prevComments => ({
-                    ...prevComments,
-                    data: prevComments?.data ? [...prevComments.data, data.data.data] : [data.data.data],
-                    success: true,
-                    message: prevComments?.message || '',
-                }))
+            .then((data) => {
+                console.log(data.data.data);
+                // setComments((prevComments) => ({
+                //     ...prevComments,
+                //     data: prevComments?.data
+                //         ? [...prevComments.data, data.data.data]
+                //         : [data.data.data],
+                //     success: true,
+                //     message: prevComments?.message || "",
+                // }));
+                setComments([...comments, data.data.data]);
             })
-            .catch(err => console.log(err))
-    }
+            .catch((err) => console.log(err));
+    };
 
     return (
         <>
-            {open && <CreateCollectionModal setIsOpen={closeModal} />}
+            {open && <CreateCollectionModal id={id} setIsOpen={closeModal} />}
 
             <Helmet
                 title={`${anime.attributes.titles.en_jp}`}
@@ -131,7 +139,7 @@ function AnimePage() {
                                 <option value={0}>+Add to collection</option>
                                 {collections.map((el) => (
                                     <option key={el.id} value={el.id}>
-                                        {el.title}
+                                        {el.collectionName}
                                     </option>
                                 ))}
                                 <option>Create collection</option>
@@ -266,27 +274,32 @@ function AnimePage() {
                         onChange={(e) => setCommentText(e.target.value)}
                         className="w-full h-48 mb-5 p-2 resize-none border rounded border-none outline-none bg-zinc-900"
                     />
-                    <Button title="Send" className="w-1/5" onClick={(e) => handleSendComment()}/>
+                    <Button
+                        title="Send"
+                        className="w-1/5"
+                        onClick={() => handleSendComment()}
+                    />
                 </div>
 
                 <div className="animePage-comments-container">
-                    
-                    {comments?.message &&
-                        <NoItems title={"No comments"}/>
-                    }
-                    
-                    {comments?.success === true && !comments.data &&
-                        <Loading/>
-                    }
-                    
-                    {comments?.data &&
-                        <ul>
-                            {comments?.data.map((c: CommentModel) => (
-                                <CommentView key={c.id} comments={c}/>
-                            ))}
-                        </ul>
-                    }
-                    
+                    {/* {comments?.message ||
+                        (comments?.data.length === 0 && (
+                            <NoItems title={"No comments"} />
+                        ))}
+
+                    {comments?.success === true && !comments.data && (
+                        <Loading />
+                    )} */}
+
+                    <ul>
+                        {comments?.length !== 0 ? (
+                            comments?.map((c: CommentModel) => (
+                                <CommentView key={c.id} comment={c} />
+                            ))
+                        ) : (
+                            <NoItems title={"No comments"} />
+                        )}
+                    </ul>
                 </div>
             </section>
         </>

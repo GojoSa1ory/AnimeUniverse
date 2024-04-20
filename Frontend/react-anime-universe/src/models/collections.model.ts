@@ -1,14 +1,18 @@
-import { IAnime } from "./anime.models"
+import { AnimeDto } from "./anime.models";
 
-export type IUserCollection = {
-    anime: IAnime[],
-    createdAt: string,
-    updatedAt: string,
-    title: string,
-    id: number
+export class CollectionDto {
+    constructor(
+        public id: number,
+        public collectionName: string,
+        public collectionImage: string,
+        public anime: AnimeDto[],
+    ) {}
 }
 
-export type IUserCollectionResponse = {
-    data: IUserCollection[]
+export class SetCollectionDto {
+    constructor(
+        public CollectionName: string,
+        public AnimeId?: string,
+        public CollectionImage?: string,
+    ) {}
 }
-

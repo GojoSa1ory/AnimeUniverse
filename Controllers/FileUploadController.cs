@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace RSPOCourseWork.Controllers;
 
 [ApiController]
-[Authorize]
 [Route("[controller]")]
 public class FileUploadController : ControllerBase
 {
@@ -18,6 +17,7 @@ public class FileUploadController : ControllerBase
     }
 
     [HttpPatch("picture/user/set")]
+    [Authorize(Roles = "admin, user")]
     public async Task<ActionResult<ServiceResponse<GetUserDto>>> UpdateProfilePicture([FromForm] UpdateUserDto newUser)
     {
 

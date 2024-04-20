@@ -28,7 +28,6 @@ public class CollectionService : ICollectionService
             collection.user = user;
             collection.anime = new List<AnimeModel>();
             collection.anime.Add(anime);
-
             _context.Collections.Add(collection);
             await _context.SaveChangesAsync();
 
@@ -53,7 +52,9 @@ public class CollectionService : ICollectionService
                 .Include(c => c.anime)
                     .ThenInclude(a => a.attributes)
                 .Include(c => c.anime)
-                    .ThenInclude(a => a.links)
+                    .ThenInclude(a => a.attributes.posterImage)
+                .Include(c => c.anime)
+                    .ThenInclude(a => a.attributes.titles)
                 .FirstOrDefault(c => c.Id == id && c.user.Id == userID);
 
             if (collection is null) throw new Exception("Collection not found");
@@ -109,7 +110,7 @@ public class CollectionService : ICollectionService
 
         try
         {
-            
+
             var collections = _context.Collections.Where(c => c.user.Id == userId);
 
             if (collections.IsNullOrEmpty()) throw new Exception("U don't have a collections");
