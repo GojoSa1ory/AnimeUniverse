@@ -28,7 +28,7 @@ public class AnimeService : IAnimeService
             .Include(a => a.attributes)
             .Include(a => a.attributes.posterImage)
             .Include(a => a.attributes.titles)
-            .Where(a => a.attributes.canonicalTitle.Contains(request) || a.attributes.titles.en.Contains(request) || a.attributes.titles.en_jp.Contains(request) || a.attributes.titles.ja_jp.Contains(request));
+            .Where(a => a.attributes.canonicalTitle.ToLower().Contains(request.ToLower()) || a.attributes.titles.en.ToLower().Contains(request.ToLower()) || a.attributes.titles.en_jp.ToLower().Contains(request.ToLower()) || a.attributes.titles.ja_jp.ToLower().Contains(request.ToLower()));
 
             response.Data = animeList.Select(a => _mapper.Map<AnimeDto>(a)).ToList();
 
@@ -121,6 +121,33 @@ public class AnimeService : IAnimeService
         catch (Exception e)
         {
             response.Message = e.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
+
+    public async Task<ServiceResponse<List<AnimeModel>>> AnimePagination(int page, int pageSize)
+    {
+        ServiceResponse<List<AnimeModel>> response = new();
+
+        try
+        {
+
+            var anime = _context.Anime
+            .Include(a => a.attributes)
+            .Include(a => a.attributes.coverImage)
+            .Include(a => a.attributes.titles)
+            .Include(a => a.attributes.posterImage)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+            response.Data = anime;
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
             response.Success = false;
         }
 

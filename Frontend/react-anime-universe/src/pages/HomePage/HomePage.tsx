@@ -16,8 +16,6 @@ function HomePage() {
                 setAnime(item.data.data);
             })
             .catch(() => new Error("Failed to get data"));
-
-        // return () => setAnime([]);
     }, []);
 
     return (
@@ -30,20 +28,19 @@ function HomePage() {
                     </h2>
                 </div>
 
-                {anime
-                    ?
+                {anime ? (
                     <section className="anime-section">
                         {anime.map((el) => (
-                            <AnimeCard anime={el} key={el.id}/>
+                            <AnimeCard anime={el} key={el.id} />
                         ))}
 
                         <Link to={"/anime"}>
                             <Button className="anime-button">Watch all</Button>
                         </Link>
                     </section>
-                    :
-                    <Loading/>
-                }
+                ) : (
+                    <Loading />
+                )}
             </main>
         </>
     );

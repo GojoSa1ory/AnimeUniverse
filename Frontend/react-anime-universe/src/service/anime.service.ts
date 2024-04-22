@@ -3,13 +3,11 @@ import { ServerResponse } from "../models/serverResponse.models";
 import { AnimeDto } from "../models/anime.models";
 
 export default class AnimeService {
-    // private static base_url = "http://localhost:3001/api"
     private static base_url = "http://localhost:5054";
 
     static async getFixedAnime(): Promise<
         AxiosResponse<ServerResponse<AnimeDto[]>>
     > {
-        // return axios.get(`${this.base_url}/anime/limit/${limit}`)
         return axios.get<ServerResponse<AnimeDto[]>>(`${this.base_url}/all`);
     }
 
@@ -26,6 +24,14 @@ export default class AnimeService {
     ): Promise<AxiosResponse<ServerResponse<AnimeDto[]>>> {
         return axios.get<ServerResponse<AnimeDto[]>>(
             `${this.base_url}/search/${request}`,
+        );
+    }
+
+    static paginationAnime(
+        page: number,
+    ): Promise<AxiosResponse<ServerResponse<AnimeDto[]>>> {
+        return axios.get<ServerResponse<AnimeDto[]>>(
+            `${this.base_url}/page/${page}/10`,
         );
     }
 }

@@ -1,9 +1,7 @@
-import { useState } from "react";
-import Button from "../Button/Button";
 import Input from "../Input/Input";
 import "./SearchModal.scss";
 import { AnimeDto } from "../../../models/anime.models";
-import { AnimeCard } from "../AnimeCard/AnimeCard";
+import { SearchCard } from "../SearchCard/SearchCard";
 
 export const SearchModal = ({
     value,
@@ -29,10 +27,10 @@ export const SearchModal = ({
                     className="fixed z-2 h-16 w-[90%] text-white bg-black"
                 />
 
-                <ul className="mt-20 grid grid-cols-4 gap-5 z-1 pt-20">
+                <ul className="mt-20 grid grid-cols-1 gap-5 z-1 pt-20">
                     {result?.map((item) => (
                         <button key={item.id} onClick={() => setValue("")}>
-                            <AnimeCard anime={item} />
+                            <SearchCard result={item} />
                         </button>
                     ))}
                 </ul>

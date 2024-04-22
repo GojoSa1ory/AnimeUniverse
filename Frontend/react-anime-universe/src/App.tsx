@@ -15,6 +15,7 @@ import CollectionPage from "./pages/CollectionPage/CollectionPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import MainLayout from "./components/Layouts/MainLayout";
 import { UserService } from "./service/user.service";
+import { AllAnimePage } from "./pages/AllAnimePage/AllAnimePage";
 
 function App() {
     const setUser = useUser((state) => state.setUser);
@@ -65,6 +66,7 @@ function App() {
                         <Route path="anime/:id" element={<AnimePage />} />
                         <Route path="login" element={<LoginPage />} />
                         <Route path="register" element={<RegPage />} />
+                        <Route path="anime" element={<AllAnimePage />} />
 
                         {/* Private Routes */}
                         <Route element={<AuthGuard />}>

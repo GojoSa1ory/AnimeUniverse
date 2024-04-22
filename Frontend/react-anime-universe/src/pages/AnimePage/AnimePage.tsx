@@ -48,7 +48,7 @@ function AnimePage() {
             setCollections([]);
             setComments([]);
         };
-    }, []);
+    }, [id]);
 
     const handleMouseEnter = () => {
         setIsHovered(true);

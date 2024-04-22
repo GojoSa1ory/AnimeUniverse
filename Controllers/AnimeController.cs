@@ -53,4 +53,15 @@ public class AnimeController : ControllerBase
 
         return response;
     }
+
+    [HttpGet("page/{pageNumber}/{pageSize}")]
+    public async Task<ActionResult<ServiceResponse<List<AnimeModel>>>> AnimePagination(int pageNumber, int pageSize)
+    {
+        var response = await _service.AnimePagination(pageNumber, pageSize);
+
+        if (!response.Success) return BadRequest(response);
+
+        return response;
+    }
+
 }
