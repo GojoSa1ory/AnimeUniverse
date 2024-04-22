@@ -15,6 +15,7 @@ import Button from "../../components/UI/Button/Button";
 import NoItems from "../../components/NoItems/NoItems.tsx";
 import { CommentService } from "../../service/comment.service.ts";
 import { useComment } from "../../stores/comment.store.ts";
+import { useUser } from "../../stores/user.store.ts";
 
 function AnimePage() {
     const { id } = useParams();
@@ -27,6 +28,7 @@ function AnimePage() {
 
     const comments = useComment((state) => state.comments);
     const setComments = useComment((state) => state.setComments);
+    const user = useUser((state) => state.user);
 
     useEffect(() => {
         AnimeService.getAnimeById(id)
@@ -244,7 +246,6 @@ function AnimePage() {
                 </div>
 
                 <div className="animePage-video-section">
-                    {/* <img src={anime.data.attributes.coverImage.original}></img> */}
                     <iframe
                         className="animePage-video"
                         src={`https://www.youtube.com/embed/${anime.attributes.youtubeVideoId}`}
@@ -259,29 +260,26 @@ function AnimePage() {
                 </div>
 
                 <div className="m-14 flex flex-col justify-center items-end h-[200px]">
+                    {!user && <p>You must be logged in to write a comment</p>}
+
                     <textarea
+                        disabled={!user}
                         placeholder="Ur text"
                         value={commentText!}
                         onChange={(e) => setCommentText(e.target.value)}
-                        className="w-full h-48 mb-5 p-2 resize-none border rounded border-none outline-none bg-zinc-900"
+                        className="w-full h-48 my-5 p-2 resize-none border rounded border-none outline-none bg-zinc-900"
                     />
-                    <Button
-                        title="Send"
-                        className="w-1/5"
-                        onClick={() => handleSendComment()}
-                    />
+
+                    {user && (
+                        <Button
+                            title="Send"
+                            className="w-1/5"
+                            onClick={() => handleSendComment()}
+                        />
+                    )}
                 </div>
 
                 <div className="animePage-comments-container">
-                    {/* {comments?.message ||
-                        (comments?.data.length === 0 && (
-                            <NoItems title={"No comments"} />
-                        ))}
-
-                    {comments?.success === true && !comments.data && (
-                        <Loading />
-                    )} */}
-
                     <ul>
                         {comments?.length !== 0 ? (
                             comments?.map((c: CommentModel) => (

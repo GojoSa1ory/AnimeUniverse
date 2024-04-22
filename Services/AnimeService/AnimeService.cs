@@ -48,7 +48,7 @@ public class AnimeService : IAnimeService
 
         try
         {
-            var responseJson = await _client.GetAsync("https://kitsu.io/api/edge/anime?filter[seasonYear]=2023&page[limit]=20");
+            var responseJson = await _client.GetAsync("https://kitsu.io/api/edge/anime?filter[seasonYear]=2022&page[limit]=20");
 
             if (!responseJson.IsSuccessStatusCode)
                 throw new Exception($"Failed to fetch anime data. Status code: {responseJson.StatusCode}");

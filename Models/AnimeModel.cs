@@ -34,7 +34,7 @@ public class AttributesModel
     public int? episodeCount { get; set; }
     public string? episodeLength { get; set; }
     public int? totalLength { get; set; }
-    public string youtubeVideoId { get; set; }
+    public string? youtubeVideoId { get; set; }
     public string showType { get; set; }
     public bool nsfw { get; set; }
 }
