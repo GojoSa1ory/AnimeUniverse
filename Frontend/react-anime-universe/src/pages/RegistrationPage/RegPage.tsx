@@ -38,8 +38,8 @@ function RegPage() {
                 console.log(response.data.data);
                 localStorage.setItem("token", response.data.data.token);
                 setUser(response.data.data.user);
-                // nav('/')
-                // window.location.reload();
+                nav("/");
+                window.location.reload();
             })
             .catch(() => {
                 setNotification({

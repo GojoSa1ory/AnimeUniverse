@@ -25,7 +25,7 @@ function CreateCollectionModal({
         CollectionsService.createCollection(collection)
             .then((res) => {
                 console.log(res.data);
-                // window.location.reload();
+                window.location.reload();
                 setIsOpen();
             })
             .catch((err) => console.log(err));
