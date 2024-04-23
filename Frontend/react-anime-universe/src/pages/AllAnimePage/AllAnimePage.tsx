@@ -5,20 +5,40 @@ import { AnimeCard } from "../../components/UI/AnimeCard/AnimeCard";
 import Button from "../../components/UI/Button/Button";
 import NotFound from "../../components/NotFound/NotFound";
 import Loading from "../../components/Loading/Loading";
+import { filterMethods } from "../../constants/FilterMethods";
 
 export const AllAnimePage = () => {
     const [anime, setAnime] = useState<AnimeDto[] | []>([]);
     const [page, setPage] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(true);
+    const [method, setMethod] = useState<string>("none");
 
     useEffect(() => {
-        AnimeService.paginationAnime(page)
-            .then((res) => {
-                setAnime(res.data.data);
-                setLoading(false);
-            })
-            .catch((err) => console.error(err));
-    }, [page]);
+        if (method === "none") {
+            AnimeService.paginationAnime(page)
+                .then((res) => {
+                    setAnime(res.data.data);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    setLoading(false);
+                });
+        } else {
+            AnimeService.filterAnime(method, page)
+                .then((res) => setAnime(res.data.data))
+                .catch((err) => {
+                    console.log(err);
+                    setLoading(false);
+                });
+        }
+    }, [page, method]);
+
+    const handleSelectChange: (
+        event: React.ChangeEvent<HTMLSelectElement>,
+    ) => void = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+        setMethod(filterMethods[parseInt(event.target.value)]);
+    };
 
     return (
         <>
@@ -26,6 +46,15 @@ export const AllAnimePage = () => {
                 {loading && <Loading />}
 
                 {anime.length === 0 && <NotFound />}
+                <select
+                    className="animePage-section"
+                    onChange={(e) => handleSelectChange(e)}
+                >
+                    <option value={0}>None</option>
+                    <option value={1}>byPopularityRank</option>
+                    <option value={2}>byEpisodeCount</option>
+                    <option value={3}>byAverageRating</option>
+                </select>
 
                 <div className="grid grid-cols-5 gap-5">
                     {anime.map((e) => (

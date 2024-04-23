@@ -23,7 +23,6 @@ public class AnimeService : IAnimeService
 
         try
         {
-
             var animeList = _context.Anime
             .Include(a => a.attributes)
             .Include(a => a.attributes.posterImage)
@@ -31,7 +30,6 @@ public class AnimeService : IAnimeService
             .Where(a => a.attributes.canonicalTitle.ToLower().Contains(request.ToLower()) || a.attributes.titles.en.ToLower().Contains(request.ToLower()) || a.attributes.titles.en_jp.ToLower().Contains(request.ToLower()) || a.attributes.titles.ja_jp.ToLower().Contains(request.ToLower()));
 
             response.Data = animeList.Select(a => _mapper.Map<AnimeDto>(a)).ToList();
-
         }
         catch (Exception ex)
         {
@@ -59,8 +57,8 @@ public class AnimeService : IAnimeService
             if (animeData is null && animeData?.data is null && animeData?.data.Count == 0)
                 throw new Exception("Deserialized anime data is null or empty.");
 
-            var responseData = animeData.data.Select(a => _mapper.Map<AnimeModel>(a)).ToList();
-            responseData.ForEach(a => _context.Anime.Add(a));
+            var responseData = animeData?.data.Select(a => _mapper.Map<AnimeModel>(a)).ToList();
+            responseData?.ForEach(a => _context.Anime.Add(a));
             await _context.SaveChangesAsync();
             response.Data = responseData;
         }
@@ -144,6 +142,60 @@ public class AnimeService : IAnimeService
             .ToList();
 
             response.Data = anime;
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
+            response.Success = false;
+        }
+
+        return response;
+    }
+
+    public async Task<ServiceResponse<List<AnimeModel>>> SortAnime(string sortMethod, int page, int pageSize)
+    {
+        ServiceResponse<List<AnimeModel>> response = new();
+
+        try
+        {
+            switch (sortMethod)
+            {
+                case "byPopularityRank":
+                    response.Data = _context.Anime
+                    .Include(a => a.attributes)
+                    .Include(a => a.attributes.coverImage)
+                    .Include(a => a.attributes.titles)
+                    .Include(a => a.attributes.posterImage)
+                    .OrderBy(a => a.attributes.popularityRank)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+                    break;
+                case "byEpisodeCount":
+                    response.Data = _context.Anime
+                    .Include(a => a.attributes)
+                    .Include(a => a.attributes.coverImage)
+                    .Include(a => a.attributes.titles)
+                    .Include(a => a.attributes.posterImage)
+                    .OrderBy(a => a.attributes.episodeCount)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+                    break;
+                case "byAverageRating":
+                    response.Data = _context.Anime
+                    .Include(a => a.attributes)
+                    .Include(a => a.attributes.coverImage)
+                    .Include(a => a.attributes.titles)
+                    .Include(a => a.attributes.posterImage)
+                    .OrderBy(a => a.attributes.averageRating)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+                    break;
+                default:
+                    throw new Exception("Invalid filter method");
+            }
         }
         catch (Exception ex)
         {

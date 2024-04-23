@@ -11,7 +11,7 @@ function HomePage() {
     const [anime, setAnime] = useState<AnimeDto[] | []>([]);
 
     useEffect(() => {
-        AnimeService.getFixedAnime()
+        AnimeService.paginationAnime(1)
             .then((item) => {
                 setAnime(item.data.data);
             })

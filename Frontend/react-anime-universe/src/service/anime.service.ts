@@ -34,4 +34,13 @@ export default class AnimeService {
             `${this.base_url}/page/${page}/10`,
         );
     }
+
+    static filterAnime(
+        filterMethod: string,
+        page: number,
+    ): Promise<AxiosResponse<ServerResponse<AnimeDto[]>>> {
+        return axios.get<ServerResponse<AnimeDto[]>>(
+            `${this.base_url}/filter/${filterMethod}/${page}/10`,
+        );
+    }
 }

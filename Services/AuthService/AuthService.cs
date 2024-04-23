@@ -30,7 +30,8 @@ public class AuthService : IAuthService
 
             var newUser = _mapper.Map<UserModel>(user);
             newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            newUser.Role = _context.Roles.FirstOrDefault(r => r.Id == 2);
+            var role = _context.Roles.FirstOrDefault(r => r.Id == 2);
+            newUser.Role = role;
 
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();

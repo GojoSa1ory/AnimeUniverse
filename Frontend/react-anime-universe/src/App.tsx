@@ -16,6 +16,7 @@ import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import MainLayout from "./components/Layouts/MainLayout";
 import { UserService } from "./service/user.service";
 import { AllAnimePage } from "./pages/AllAnimePage/AllAnimePage";
+import { routes } from "./constants/Routes";
 
 function App() {
     const setUser = useUser((state) => state.setUser);
@@ -61,24 +62,37 @@ function App() {
                 />
 
                 <Routes>
-                    <Route path="/" element={<MainLayout />}>
-                        <Route index path="/" element={<HomePage />} />
-                        <Route path="anime/:id" element={<AnimePage />} />
-                        <Route path="login" element={<LoginPage />} />
-                        <Route path="register" element={<RegPage />} />
-                        <Route path="anime" element={<AllAnimePage />} />
+                    <Route path={routes.home} element={<MainLayout />}>
+                        <Route
+                            index
+                            path={routes.home}
+                            element={<HomePage />}
+                        />
+                        <Route
+                            path={`${routes.oneAnime}:id`}
+                            element={<AnimePage />}
+                        />
+                        <Route path={routes.login} element={<LoginPage />} />
+                        <Route path={routes.register} element={<RegPage />} />
+                        <Route
+                            path={routes.allAnime}
+                            element={<AllAnimePage />}
+                        />
 
                         {/* Private Routes */}
                         <Route element={<AuthGuard />}>
                             <Route
-                                path="user-collections"
+                                path={routes.userCollections}
                                 element={<CollectionsPage />}
                             />
                             <Route
-                                path="user-collections/:id"
+                                path={`${routes.userCollection}:id`}
                                 element={<CollectionPage />}
                             />
-                            <Route path="profile" element={<ProfilePage />} />
+                            <Route
+                                path={routes.profile}
+                                element={<ProfilePage />}
+                            />
                         </Route>
 
                         <Route path="*" element={<NotFound />} />

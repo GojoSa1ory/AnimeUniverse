@@ -64,4 +64,14 @@ public class AnimeController : ControllerBase
         return response;
     }
 
+    [HttpGet("filter/{filterMethod}/{page}/{pageSize}")]
+    public async Task<ActionResult<ServiceResponse<List<AnimeModel>>>> FilterAnime(string filterMethod, int page, int pageSize)
+    {
+        var response = await _service.SortAnime(filterMethod, page, pageSize);
+
+        if (!response.Success) return BadRequest(response);
+
+        return response;
+    }
+
 }
