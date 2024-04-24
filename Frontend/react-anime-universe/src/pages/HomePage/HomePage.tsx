@@ -6,16 +6,24 @@ import Button from "../../components/UI/Button/Button";
 import "./home.scss";
 import { AnimeDto } from "../../models/anime.models";
 import Loading from "../../components/Loading/Loading.tsx";
+import NoItems from "../../components/NoItems/NoItems.tsx";
 
 function HomePage() {
     const [anime, setAnime] = useState<AnimeDto[] | []>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         AnimeService.paginationAnime(1)
             .then((item) => {
-                setAnime(item.data.data);
+                setTimeout(() => {
+                    setAnime(item.data.data);
+                    setLoading(false);
+                }, 1000);
             })
-            .catch(() => new Error("Failed to get data"));
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
     }, []);
 
     return (
@@ -28,7 +36,11 @@ function HomePage() {
                     </h2>
                 </div>
 
-                {anime ? (
+                {loading && <Loading />}
+
+                {!loading && !anime && <NoItems title="Error" />}
+
+                {anime && (
                     <section className="anime-section">
                         {anime.map((el) => (
                             <AnimeCard anime={el} key={el.id} />
@@ -38,8 +50,6 @@ function HomePage() {
                             <Button className="anime-button">Watch all</Button>
                         </Link>
                     </section>
-                ) : (
-                    <Loading />
                 )}
             </main>
         </>

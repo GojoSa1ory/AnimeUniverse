@@ -7,7 +7,6 @@ import ProfileCollections from "../../components/ProfileCollections/ProfileColle
 import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = () => {
-    //TODO: Create a header profile image
     const user = useUser((state) => state.user);
     const [choose, setChoose] = useState<string>("start");
     const navigate = useNavigate();

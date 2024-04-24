@@ -6,20 +6,27 @@ import { AnimeCard } from "../../components/UI/AnimeCard/AnimeCard";
 import { AnimeDto } from "../../models/anime.models";
 import { CollectionDto } from "../../models/collections.model";
 import NoItems from "../../components/NoItems/NoItems";
+import Loading from "../../components/Loading/Loading";
 
 function CollectionPage() {
     const { id } = useParams();
     const [anime, setAnime] = useState<AnimeDto[] | []>([]);
     const [col, setCol] = useState<CollectionDto | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         CollectionsService.getCollectionById(id)
             .then((res) => {
-                setCol(res.data.data);
-                console.log(res.data.data.anime);
-                setAnime(res.data.data.anime);
+                setTimeout(() => {
+                    setCol(res.data.data);
+                    setAnime(res.data.data.anime);
+                    setLoading(false);
+                }, 1000);
             })
-            .catch();
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
 
         return () => {
             setAnime([]);
@@ -32,11 +39,12 @@ function CollectionPage() {
             <section className="collectionPage-layout">
                 <h1 className="collectionPage-title">{col?.collectionName}</h1>
 
-                {anime.length === 0 ? (
+                {loading && <Loading />}
+
+                {!loading && !anime ? (
                     <NoItems title={`Your ${col?.collectionName} is empty`} />
                 ) : (
                     <div className="collectionPage-list">
-                        {/* TODO: Create a useful anime list component */}
                         {anime.map((el) => (
                             <AnimeCard key={el.id} anime={el} />
                         ))}
