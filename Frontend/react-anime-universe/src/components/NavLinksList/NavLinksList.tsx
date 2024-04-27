@@ -1,13 +1,12 @@
-
-
 import { Link } from 'react-router-dom'
 import { navLinks } from '../../constants/NavLinks'
 import Button from '../UI/Button/Button'
+import "./NavLinksLiist.style.scss"
 
 
 function NavLinksList() {
   return (
-    <div className='flex justify-center items-center'>
+    <div className='container'>
 
         {navLinks.map(el => (
             <Link to={el.link} key={el.name}>

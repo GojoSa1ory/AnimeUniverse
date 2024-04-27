@@ -66,4 +66,48 @@
     object-fit: cover;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+}
+
+@media (max-width: 430px) {
+
+    .home {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(28, 28, 28);
+        padding: 20px;
+    }
+
+    .anime-section {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 32px;
+    }
+
+    .intro-title {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 900;
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, var(--tw-gradient-stops));
+        --tw-gradient-from: #2563eb var(--tw-gradient-from-position);
+        --tw-gradient-to: rgb(37 99 235 / 0) var(--tw-gradient-to-position);
+        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        --tw-gradient-to: #a855f7 var(--tw-gradient-to-position);
+    }
+
+    .home-intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        height: 200px;
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 64px;
+        border-radius: 20px;
+    }
+}

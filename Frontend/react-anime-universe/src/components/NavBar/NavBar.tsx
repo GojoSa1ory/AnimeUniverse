@@ -10,29 +10,33 @@ import { useUser } from "../../stores/user.store";
 import { Link } from "react-router-dom";
 import AnimeService from "../../service/anime.service";
 import { SearchModal } from "../UI/SearchModal/SearchModal";
+import { AnimeDto } from "../../models/anime.models";
 
 function NavBar() {
     const isAuth = useUser((state) => state.isAuth);
     const [search, setSearch] = useState<string>("");
-    const [result, setResult] = useState();
+    const [result, setResult] = useState<AnimeDto[] | []>([]);
+    const [openSearchModal, setOpenSearchModal] = useState<boolean>(false);
 
     const handleSearch = (request: string) => {
         setSearch(request);
+        setOpenSearchModal(true)
         AnimeService.searchAnime(search)
             .then((response) => setResult(response.data.data))
             .catch((err) => console.log(err));
     };
 
-    function setValue(e: any) {
-        setSearch(e);
+    function closeModal () {
+        setOpenSearchModal(false)
     }
 
     return (
         <>
-            {search.length != 0 && (
+            {openSearchModal && (
                 <SearchModal
                     value={search}
-                    setValue={setValue}
+                    setValue={handleSearch}
+                    setCloseModal={closeModal}
                     result={result}
                 />
             )}
@@ -46,12 +50,12 @@ function NavBar() {
                 </Link>
 
                 <div className="navbar-search-container">
-                    <Search width={20} height={20} />
+                    <Search onClick={() => setOpenSearchModal(true)} width={20} height={20} />
                     <Input
                         value={search}
                         setValue={handleSearch}
                         type="text"
-                        className=""
+                        className="navbar-search-input"
                         placeholder={`Search`}
                     />
                 </div>
@@ -60,8 +64,12 @@ function NavBar() {
                     <NavLinksList />
                 ) : (
                     <div className="navbar-auth-buttons">
+                        <Link to={"/anime"}>
+                            <Button className="w-[100px]">Anime</Button>
+                        </Link>
+
                         <Link to={"/login"}>
-                            <Button className="w-[100px]">Login</Button>
+                            <Button className="w-[100px] mx-2">Login</Button>
                         </Link>
 
                         <Link to={"/register"}>

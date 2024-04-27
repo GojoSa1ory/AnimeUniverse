@@ -6,8 +6,10 @@ import Button from "../../components/UI/Button/Button";
 import NotFound from "../../components/NotFound/NotFound";
 import Loading from "../../components/Loading/Loading";
 import { filterMethods } from "../../constants/FilterMethods";
+import "./AllAnimePage.style.scss"
 
 export const AllAnimePage = () => {
+
     const [anime, setAnime] = useState<AnimeDto[] | []>([]);
     const [page, setPage] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(true);
@@ -56,7 +58,7 @@ export const AllAnimePage = () => {
                     <option value={3}>byAverageRating</option>
                 </select>
 
-                <div className="grid grid-cols-5 gap-5">
+                <div className="anime-list-container">
                     {anime.map((e) => (
                         <AnimeCard key={e.id} anime={e} />
                     ))}

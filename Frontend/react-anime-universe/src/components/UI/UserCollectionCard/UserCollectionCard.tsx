@@ -15,8 +15,14 @@ export const UserCollectionCard: FC<IUserCollectionCard> = ({ collection }) => {
         >
             <div>
                 <img
-                    src="https://i.pinimg.com/originals/61/a2/fd/61a2fd1524811daa39de174c049e64e5.gif"
+                    // src="https://i.pinimg.com/originals/61/a2/fd/61a2fd1524811daa39de174c049e64e5.gif"
+                    src={
+                        collection.collectionImage == "string"
+                            ? "https://i.pinimg.com/originals/61/a2/fd/61a2fd1524811daa39de174c049e64e5.gif"
+                            : collection.collectionImage
+                    }
                     alt="image"
+                    className="h-[220px] w-[300px] flex"
                 />
             </div>
 
@@ -24,7 +30,6 @@ export const UserCollectionCard: FC<IUserCollectionCard> = ({ collection }) => {
                 <p className="overflow-hidden text-ellipsis">
                     {collection.collectionName}
                 </p>
-                {/* <p className='text-zinc-500'>{anime.episodeLength} min {anime.episodeCount} ep•</p> */}
             </div>
         </Link>
     );

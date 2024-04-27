@@ -11,8 +11,8 @@ export class CollectionDto {
 
 export class SetCollectionDto {
     constructor(
-        public CollectionName: string,
-        public AnimeId?: string,
-        public CollectionImage?: string,
+        public CollectionImage?: FormDataEntryValue | null,
+        public CollectionName?: string,
+        public AnimeId?: number,
     ) {}
 }

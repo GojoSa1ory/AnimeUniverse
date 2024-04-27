@@ -41,7 +41,7 @@ function HomePage() {
                 {!loading && !anime && <NoItems title="Error" />}
 
                 {anime && (
-                    <section className="anime-section">
+                    <section className="anime-section md:grid-cols-1">
                         {anime.map((el) => (
                             <AnimeCard anime={el} key={el.id} />
                         ))}

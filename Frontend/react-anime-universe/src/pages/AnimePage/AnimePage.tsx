@@ -259,7 +259,7 @@ function AnimePage() {
                     </div>
                 </div>
 
-                <div className="m-14 flex flex-col justify-center items-end h-[200px]">
+                <div className="animePage-comments-send">
                     {!user && <p>You must be logged in to write a comment</p>}
 
                     <textarea

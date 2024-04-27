@@ -18,7 +18,7 @@ function CreateCollectionModal({
     const createCollection = async () => {
         const collection: SetCollectionDto = {
             CollectionName: collectionName,
-            AnimeId: id,
+            AnimeId: parseInt(id),
             CollectionImage: "string",
         };
 

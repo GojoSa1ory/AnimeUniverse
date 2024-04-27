@@ -37,7 +37,9 @@ export const ProfilePage = () => {
     return (
         <>
             <section className="profile-layout">
+
                 <div className="profile-nav-panle">
+
                     <div className="profile-info">
                         <img src={checkImage()} className="user-image" />
                         <p>{user?.name}</p>
@@ -57,12 +59,6 @@ export const ProfilePage = () => {
                             >
                                 Collections
                             </li>
-                            <li
-                                onClick={() => setChoose("favorites")}
-                                className="profile-nav-link"
-                            >
-                                Favorites
-                            </li>
                             <li onClick={logOut} className="profile-nav-link">
                                 Log Out
                             </li>
@@ -71,6 +67,7 @@ export const ProfilePage = () => {
                 </div>
 
                 <div className="profile-main">{renderSwitch()}</div>
+
             </section>
         </>
     );
