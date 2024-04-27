@@ -20,7 +20,6 @@ public class UploadFileService : IUploadService
 
         try
         {
-
             UserModel user = _context.Users.FirstOrDefault(u => u.Id == id);
 
             if (user is null) throw new Exception("User not found");
@@ -62,7 +61,6 @@ public class UploadFileService : IUploadService
 
         try
         {
-
             CollectionModel collection = _context.Collections.FirstOrDefault(c => c.Id == id && c.user.Id == userId);
 
             if (collection is null) throw new Exception("Collectio not found");
@@ -101,6 +99,48 @@ public class UploadFileService : IUploadService
 
         return response;
 
+    }
+
+    public async Task<ServiceResponse<AnimeModel>> SetAnimeSer(SetAnimeSerDto ser, string animeId)
+    {
+        ServiceResponse<AnimeModel> response = new();
+
+        try
+        {
+            var anime = _context.Anime.FirstOrDefault(a => a.Id == animeId);
+
+            if (anime is null) throw new Exception("Collectio not found");
+
+            var imageFile = ser.ser;
+
+            if (imageFile is null) throw new Exception("Image not found");
+
+            var uploadImagePath = $"./Uploads/AnimeSer";
+            string fullImagePath = $"{uploadImagePath}/{imageFile.FileName}";
+
+            using (var fileStream = new FileStream(fullImagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+
+            var baseUrl = "http://localhost:5054/FileUpload/picture/get?path=";
+            var imageRelativePath = $"Uploads/AnimeSer/{imageFile.FileName}";
+            var imageUri = new Uri(baseUrl + imageRelativePath);
+
+            anime.attributes.ser = imageUri.ToString();
+
+            await _context.SaveChangesAsync();
+
+            response.Data = anime;
+
+        }
+        catch (Exception ex)
+        {
+            response.Message = ex.Message;
+            response.Success = false;
+        }
+
+        return response;
     }
 
 

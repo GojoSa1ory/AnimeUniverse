@@ -10,7 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b490adc-a8c6-4817-a484-0c9fe3267469" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/AnimePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/AnimePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RSPOCourseWork/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RSPOCourseWork/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CollectionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CollectionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dtos/CollectionDtos/SetCollectionDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dtos/CollectionDtos/SetCollectionDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dtos/CollectionDtos/UpdateCollectionDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dtos/CollectionDtos/UpdateCollectionDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavBar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/constants/NavLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/constants/NavLinks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/collections.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/collections.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionPage/CollectionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionPage/CollectionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/collections.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/collections.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CollectionService/CollectionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CollectionService/CollectionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CollectionService/ICollectionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CollectionService/ICollectionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/UploadFileService/UploadFileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/UploadFileService/UploadFileService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +140,7 @@
       <workItem from="1713180610468" duration="8000" />
       <workItem from="1713526542711" duration="713000" />
       <workItem from="1713626439753" duration="311000" />
+      <workItem from="1714032881677" duration="686000" />
     </task>
     <servers />
   </component>

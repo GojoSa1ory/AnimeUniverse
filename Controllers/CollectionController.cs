@@ -8,10 +8,10 @@ namespace RSPOCourseWork.Controllers;
 [ApiController]
 [Authorize]
 [Route("[controller]")]
-public class CollectionController: ControllerBase
+public class CollectionController : ControllerBase
 {
     private readonly ICollectionService _service;
-    public CollectionController (ICollectionService service)
+    public CollectionController(ICollectionService service)
     {
         _service = service;
     }
@@ -20,23 +20,23 @@ public class CollectionController: ControllerBase
     public async Task<ActionResult<ServiceResponse<GetCollectionDto>>> CreateCollection(SetCollectionDto collection)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
+
         var response = await _service.CreateCollection(collection, userId);
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
     }
-    
+
     [HttpGet("one/{id}")]
     public async Task<ActionResult<ServiceResponse<GetCollectionDto>>> GEtCollection(int id)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
+
         var response = await _service.GetById(id, int.Parse(userId));
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
     }
 
@@ -44,11 +44,11 @@ public class CollectionController: ControllerBase
     public async Task<ActionResult<ServiceResponse<List<GetCollectionDto>>>> GetAllCollections()
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
+
         var response = await _service.GetAll(int.Parse(userId));
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
     }
 
@@ -56,35 +56,46 @@ public class CollectionController: ControllerBase
     public async Task<ActionResult<ServiceResponse<GetCollectionDto>>> AddAnimeToCollectiom(int collectionId, string animeId)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
+
         var response = await _service.AddAnimeToCollection(collectionId, animeId, int.Parse(userId));
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
     }
 
     [HttpPatch("update/{collectionId}")]
-    public async Task<ActionResult<ServiceResponse<GetCollectionDto>>> UpdateCollectionInfo(SetCollectionDto collectionDto, int collectionId)
+    public async Task<ActionResult<ServiceResponse<GetCollectionDto>>> UpdateCollection(int collectionId, [FromForm] UpdateCollectionDto collection)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
-        var response = await _service.UpdateCollectionInfo(collectionDto, collectionId, int.Parse(userId));
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        var response = await _service.UpdateCollectionInfo(collection, collectionId, userId);
 
         if (!response.Success) return BadRequest(response);
-        
-        return response;
+
+        return Ok(response);
     }
 
     [HttpDelete("delete/{collectionId}")]
     public async Task<ActionResult<ServiceResponse<string>>> DeleteCollection(int collectionId)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
+
         var response = await _service.Remove(collectionId, int.Parse(userId));
 
         if (!response.Success) return BadRequest(response);
-        
+
         return response;
+    }
+
+    [HttpDelete("delete/anime/{collectionId}/{animeId}")]
+    public async Task<ActionResult<ServiceResponse<string>>> RemoveAnimeFromCollection(int collectionId, string animeId)
+    {
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+        var response = await _service.DeleteAnimeFromCollection(collectionId, animeId, userId);
+
+        if (!response.Success) return BadRequest(response);
+
+        return Ok(response);
     }
 }

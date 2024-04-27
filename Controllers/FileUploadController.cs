@@ -47,4 +47,14 @@ public class FileUploadController : ControllerBase
 
         return File(fileBytes, contentType, fileName);
     }
+
+    [HttpPatch("ser/{animeId}")]
+    public async Task<ActionResult<ServiceResponse<AnimeModel>>> SetAnimeSer([FromForm] SetAnimeSerDto ser, string animeId)
+    {
+        var response = await _service.SetAnimeSer(ser, animeId);
+
+        if (!response.Success) return BadRequest(response);
+
+        return response;
+    }
 }

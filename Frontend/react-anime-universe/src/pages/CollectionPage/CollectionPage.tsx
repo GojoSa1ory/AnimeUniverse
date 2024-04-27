@@ -70,6 +70,7 @@ function CollectionPage() {
                 ...prev,
                 CollectionImage: formData.get("CollectionImage"),
             }));
+            window.location.reload();
         }
 
         console.log(newCollection);
@@ -77,6 +78,7 @@ function CollectionPage() {
         CollectionsService.updateCollection(id, newCollection)
             .then((res) => {
                 setCol(res.data.data);
+                window.location.reload();
             })
             .catch((err) => console.log(err));
     }
@@ -86,7 +88,7 @@ function CollectionPage() {
             const animeId: string = event.target.value;
             console.log(id);
             CollectionsService.deleteAnime(id, animeId)
-                .then((res) => console.log(res.data))
+                .then(() => window.location.reload())
                 .catch((err) => console.log(err));
         }
     }

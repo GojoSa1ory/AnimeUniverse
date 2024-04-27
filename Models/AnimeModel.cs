@@ -37,6 +37,7 @@ public class AttributesModel
     public string? youtubeVideoId { get; set; }
     public string showType { get; set; }
     public bool nsfw { get; set; }
+    public string ser { get; set; }
 }
 
 public class LinksModel

@@ -90,6 +90,7 @@ function AnimePage() {
         CommentService.sendComment(id, comment)
             .then((data) => {
                 setComments([...comments, data.data.data]);
+                window.location.reload();
             })
             .catch((err) => console.log(err));
     };

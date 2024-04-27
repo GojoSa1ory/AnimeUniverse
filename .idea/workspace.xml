@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dd657931-7ac6-4917-b76f-e38dd821cf69" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RSPOCourseWork/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RSPOCourseWork/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CollectionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CollectionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dtos/CollectionDtos/SetCollectionDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dtos/CollectionDtos/SetCollectionDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dtos/CollectionDtos/UpdateCollectionDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dtos/CollectionDtos/UpdateCollectionDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavBar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavBar/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavBar/navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavLinksList/NavLinksList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/NavLinksList/NavLinksList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileCollections/ProfileCollections.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileCollections/ProfileCollections.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileSettings/ProfileSettings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileSettings/ProfileSettings.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileSettings/ProfileSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/ProfileSettings/ProfileSettings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/anime.models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/anime.models.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/CreateCollectionModal/CreateCollectionModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/CreateCollectionModal/CreateCollectionModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/SearchModal/SearchModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/SearchModal/SearchModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/UserCollectionCard/UserCollectionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/components/UI/UserCollectionCard/UserCollectionCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/constants/NavLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/constants/NavLinks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/collections.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/models/collections.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AllAnimePage/AllAnimePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AllAnimePage/AllAnimePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/AnimePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/AnimePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/animePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/AnimePage/animePage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionPage/CollectionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionPage/CollectionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionPage/collectionPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionPage/collectionPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionsPage/collectionsPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/CollectionsPage/collectionsPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/HomePage/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/HomePage/home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/LoginPage/login-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/LoginPage/login-page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/ProfilePage/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/ProfilePage/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/ProfilePage/profilePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/ProfilePage/profilePage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/RegistrationPage/register-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/pages/RegistrationPage/register-page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/collections.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/react-anime-universe/src/service/collections.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CollectionService/CollectionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CollectionService/CollectionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CollectionService/ICollectionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CollectionService/ICollectionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/UploadFileService/UploadFileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/UploadFileService/UploadFileService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +49,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2f2yGIp9fg69V5fuWQVLgxuZcan" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
@@ -30,12 +63,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "AspBackend",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/artem/RiderProjects/RSPOCourseWork",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "watcher.settings",
+    "ts.external.directory.path": "/Users/artem/RiderProjects/RSPOCourseWork/Frontend/react-anime-universe/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -48,6 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1713013370071</updated>
       <workItem from="1713013371636" duration="132000" />
+      <workItem from="1714111686731" duration="9444000" />
     </task>
     <servers />
   </component>
